@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { songs, type Song } from "./songs";
 
 type Language = "it" | "ru";
 
@@ -179,6 +180,49 @@ const copy = {
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
+const musicCopy = {
+  it: {
+    nav: "Musica",
+    index: "04 / DAL NASTRO",
+    eyebrow: "Sei canzoni · registrazioni originali",
+    title: "PREMI PLAY. POI CORREGGICI.",
+    intro:
+      "Il repertorio riappare direttamente dagli MP3. I testi inglesi sono bozze ricostruite dall’audio; le righe dubbie restano visibilmente dubbie.",
+    draftNote:
+      "Trascrizione in lavorazione: strumenti, cori e quindici anni di distanza possono avere mangiato qualche parola.",
+    lyrics: "Apri testo e traduzione",
+    english: "English · draft lyrics",
+    russian: "Русский · перевод",
+    draft: "BOZZA",
+    confidence: {
+      high: "chiarezza alta",
+      medium: "da verificare",
+      low: "molte righe dubbie",
+    },
+  },
+  ru: {
+    nav: "Песни",
+    index: "04 / С ПЛЁНКИ",
+    eyebrow: "Шесть песен · оригинальные записи",
+    title: "НАЖМИ PLAY. ПОТОМ ПОПРАВЬ НАС.",
+    intro:
+      "Репертуар возвращается прямо из MP3. Английские тексты — черновая расшифровка по звуку; сомнительные строки честно оставлены сомнительными.",
+    draftNote:
+      "Расшифровка в работе: инструменты, бэк-вокал и пятнадцать лет расстояния могли съесть отдельные слова.",
+    lyrics: "Открыть текст и перевод",
+    english: "English · черновой текст",
+    russian: "Русский · перевод",
+    draft: "ЧЕРНОВИК",
+    confidence: {
+      high: "высокая ясность",
+      medium: "нужна проверка",
+      low: "много сомнений",
+    },
+  },
+} as const;
+
+type MusicCopy = (typeof musicCopy)[Language];
+
 function TickerLine({ items }: { items: readonly string[] }) {
   return (
     <span className="ticker-line">
@@ -192,9 +236,76 @@ function TickerLine({ items }: { items: readonly string[] }) {
   );
 }
 
+function SongCard({
+  song,
+  labels,
+}: {
+  song: Song;
+  labels: MusicCopy;
+}) {
+  return (
+    <article className={`song-card song-${song.slug}`}>
+      <header>
+        <span className="track-number">{song.number}</span>
+        <div>
+          <p>{song.visualCue[labels === musicCopy.it ? "it" : "ru"]}</p>
+          <h3>{song.title}</h3>
+        </div>
+        <span className="track-duration">{song.duration}</span>
+      </header>
+
+      <div className="song-motif" aria-hidden="true">
+        {song.motif}
+      </div>
+
+      <audio controls preload="metadata" src={song.audioSrc}>
+        Your browser does not support the audio element.
+      </audio>
+
+      <div className="transcript-status">
+        <span>{labels.draft}</span>
+        <span>{labels.confidence[song.confidence]}</span>
+      </div>
+
+      <details>
+        <summary>{labels.lyrics}</summary>
+        <div className="lyrics-grid">
+          <section lang="en">
+            <h4>{labels.english}</h4>
+            {song.sections.map((section) => (
+              <div className="lyric-section" key={`${song.slug}-${section.label}-en`}>
+                <h5>{section.label}</h5>
+                <p>
+                  {section.en.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </section>
+          <section lang="ru">
+            <h4>{labels.russian}</h4>
+            {song.sections.map((section) => (
+              <div className="lyric-section" key={`${song.slug}-${section.label}-ru`}>
+                <h5>{section.label}</h5>
+                <p>
+                  {section.ru.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </section>
+        </div>
+      </details>
+    </article>
+  );
+}
+
 export default function Home() {
   const [language, setLanguage] = useState<Language>("it");
   const t = copy[language];
+  const music = musicCopy[language];
 
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-language");
@@ -218,6 +329,7 @@ export default function Home() {
           <a href="#concerto">{t.navConcert}</a>
           <a href="#bollo">{t.navBollo}</a>
           <a href="#storia">{t.navStory}</a>
+          <a href="#musica">{music.nav}</a>
           <a href="#merch">{t.navMerch}</a>
         </nav>
         <div className="header-actions">
@@ -398,9 +510,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="music" id="musica" aria-labelledby="music-title">
+        <div className="music-heading section-shell">
+          <div className="section-index">{music.index}</div>
+          <div>
+            <p className="eyebrow">{music.eyebrow}</p>
+            <h2 id="music-title">{music.title}</h2>
+            <p>{music.intro}</p>
+          </div>
+          <aside>{music.draftNote}</aside>
+        </div>
+        <div className="song-grid section-shell">
+          {songs.map((song) => (
+            <SongCard key={song.slug} song={song} labels={music} />
+          ))}
+        </div>
+      </section>
+
       <section className="merch" id="merch" aria-labelledby="merch-title">
         <div className="merch-heading section-shell">
-          <div className="section-index">{t.merchIndex}</div>
+          <div className="section-index">{t.merchIndex.replace(/^04/, "05")}</div>
           <p className="eyebrow">{t.merchEyebrow}</p>
           <h2 id="merch-title">{t.merchTitle}</h2>
           <p>{t.merchIntro}</p>
@@ -459,7 +588,7 @@ export default function Home() {
       </section>
 
       <section className="contact section-shell" id="contatto" aria-labelledby="contact-title">
-        <div className="section-index">{t.contactIndex}</div>
+        <div className="section-index">{t.contactIndex.replace(/^05/, "06")}</div>
         <p className="eyebrow">{t.contactEyebrow}</p>
         <h2 id="contact-title">{t.contactTitle}</h2>
         <a href="mailto:cmonbollo@gmail.com">
