@@ -348,6 +348,7 @@ footer a:hover {
 
 .concert h2,
 .story h2,
+.music h2,
 .merch h2,
 .contact h2 {
   margin: 18px 0 0;
@@ -666,6 +667,312 @@ blockquote cite {
   text-transform: uppercase;
 }
 
+.music {
+  overflow: hidden;
+  border-bottom: 2px solid var(--ink);
+  background: #b7cad0;
+}
+
+.music-heading {
+  display: grid;
+  grid-template-columns: 8% 58% 34%;
+  align-items: end;
+  padding-top: 7vw;
+  padding-bottom: 5vw;
+  border-bottom: 2px solid var(--ink);
+}
+
+.music-heading > div:nth-child(2) {
+  padding-right: 6vw;
+}
+
+.music-heading h2 {
+  max-width: 10ch;
+  margin: 18px 0 28px;
+  font-family: var(--font-brush);
+  font-size: clamp(62px, 8vw, 132px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.8;
+  text-transform: uppercase;
+}
+
+.music-heading > div:nth-child(2) > p:last-child {
+  max-width: 48rem;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(19px, 1.6vw, 25px);
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.music-heading aside {
+  max-width: 30rem;
+  padding: 24px 26px;
+  border: 2px solid var(--ink);
+  background: #fff1a8;
+  box-shadow: 9px 9px 0 var(--red);
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  transform: rotate(1.5deg);
+}
+
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  background: var(--ink);
+}
+
+.song-card {
+  --card-ink: var(--ink);
+  --card-paper: var(--paper-bright);
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  padding: 30px;
+  background: var(--card-paper);
+  color: var(--card-ink);
+}
+
+.song-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.song-card header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 18px;
+  min-height: 122px;
+  padding-bottom: 22px;
+  border-bottom: 2px solid currentColor;
+}
+
+.track-number,
+.track-duration {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.song-card header p {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.song-card h3 {
+  margin: 0;
+  font-family: var(--font-brush);
+  font-size: clamp(48px, 5.4vw, 92px);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.78;
+  text-transform: uppercase;
+}
+
+.song-motif {
+  display: flex;
+  min-height: 132px;
+  align-items: center;
+  padding: 22px 0;
+  font-family: var(--font-brush);
+  font-size: clamp(26px, 3.2vw, 54px);
+  letter-spacing: -0.025em;
+  line-height: 0.9;
+  text-transform: uppercase;
+  transform: rotate(-1deg);
+}
+
+.song-card audio {
+  display: block;
+  width: 100%;
+  margin: 0 0 18px;
+  accent-color: var(--red);
+}
+
+.transcript-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.transcript-status span:first-child {
+  padding: 5px 7px 4px;
+  background: var(--red);
+  color: var(--paper-bright);
+}
+
+.song-card details {
+  border-top: 2px solid currentColor;
+}
+
+.song-card summary {
+  padding: 18px 0 15px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  list-style-position: inside;
+  text-transform: uppercase;
+}
+
+.song-card summary:hover,
+.song-card summary:focus-visible {
+  color: var(--red);
+}
+
+.lyrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 4px -14px -14px;
+  background: var(--ink);
+}
+
+.lyrics-grid > section {
+  min-width: 0;
+  padding: 22px 18px 26px;
+  background: var(--paper-bright);
+  color: var(--ink);
+}
+
+.lyrics-grid h4 {
+  margin: 0 0 28px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.lyric-section + .lyric-section {
+  margin-top: 28px;
+}
+
+.lyric-section h5 {
+  margin: 0 0 8px;
+  color: var(--red);
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lyric-section p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.lyric-section p span {
+  display: block;
+}
+
+.song-common-bollocks {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      rgba(45, 76, 117, 0.16) 32px,
+      transparent 33px
+    ),
+    #f3e6a8;
+}
+
+.song-common-bollocks .song-motif {
+  max-width: 13ch;
+  color: #275a87;
+}
+
+.song-bum-bum {
+  --card-paper: var(--red);
+  color: var(--paper-bright);
+  background:
+    radial-gradient(circle at 82% 24%, var(--paper-bright) 0 4px, transparent 5px),
+    radial-gradient(circle at 76% 31%, var(--ink) 0 5px, transparent 6px),
+    var(--red);
+  background-size: 42px 42px, 52px 52px, auto;
+}
+
+.song-bum-bum .song-motif {
+  color: var(--ink);
+  text-shadow: 2px 2px 0 var(--paper-bright);
+}
+
+.song-copying-you {
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(17, 17, 15, 0.12) 50%, transparent 51%),
+    #b9d79d;
+  background-size: 34px 100%, auto;
+}
+
+.song-copying-you .song-motif {
+  color: var(--red);
+  text-shadow:
+    5px 4px 0 rgba(17, 17, 15, 0.19),
+    10px 8px 0 rgba(255, 253, 244, 0.66);
+}
+
+.song-airy {
+  background:
+    repeating-linear-gradient(
+      102deg,
+      transparent 0,
+      transparent 26px,
+      rgba(255, 253, 244, 0.45) 28px,
+      transparent 30px
+    ),
+    #8ebfd4;
+}
+
+.song-airy .song-motif {
+  color: var(--paper-bright);
+  text-shadow: 1px 1px 0 var(--ink);
+}
+
+.song-camden {
+  --card-paper: #504364;
+  color: var(--paper-bright);
+  background:
+    linear-gradient(35deg, transparent 46%, rgba(239, 63, 50, 0.74) 47% 52%, transparent 53%),
+    #504364;
+  background-size: 86px 86px;
+}
+
+.song-camden .song-motif {
+  color: #d9ee7f;
+}
+
+.song-torture {
+  --card-paper: var(--ink);
+  color: var(--paper-bright);
+  background:
+    linear-gradient(134deg, transparent 0 42%, rgba(239, 63, 50, 0.48) 43% 45%, transparent 46%),
+    linear-gradient(27deg, transparent 0 60%, rgba(255, 253, 244, 0.16) 61% 62%, transparent 63%),
+    var(--ink);
+}
+
+.song-torture .song-motif {
+  color: var(--red);
+}
+
 .merch {
   border-bottom: 2px solid var(--ink);
   background: var(--paper-bright);
@@ -942,6 +1249,14 @@ footer p:last-child {
     grid-template-columns: 8% 92%;
   }
 
+  .music-heading {
+    grid-template-columns: 8% 58% 34%;
+  }
+
+  .song-grid {
+    grid-template-columns: 1fr;
+  }
+
   .bollo-section {
     grid-template-columns: 8% 44% 48%;
     min-height: 760px;
@@ -1090,6 +1405,7 @@ footer p:last-child {
 
   .concert h2,
   .story h2,
+  .music h2,
   .merch h2,
   .contact h2 {
     font-size: clamp(54px, 18vw, 82px);
@@ -1121,6 +1437,52 @@ footer p:last-child {
 
   .archive-photo {
     width: 76%;
+  }
+
+  .music-heading {
+    display: block;
+    padding: 70px 18px 56px;
+  }
+
+  .music-heading > div:nth-child(2) {
+    padding-right: 0;
+  }
+
+  .music-heading aside {
+    margin: 38px 7px 0 0;
+    padding: 19px 20px;
+    box-shadow: 7px 7px 0 var(--red);
+  }
+
+  .song-grid {
+    gap: 2px;
+    padding: 18px;
+  }
+
+  .song-card {
+    padding: 24px 18px;
+  }
+
+  .song-card header {
+    grid-template-columns: auto 1fr;
+    min-height: 112px;
+  }
+
+  .track-duration {
+    grid-column: 2;
+  }
+
+  .song-card h3 {
+    font-size: clamp(46px, 16vw, 72px);
+  }
+
+  .song-motif {
+    min-height: 112px;
+    font-size: clamp(28px, 10vw, 46px);
+  }
+
+  .lyrics-grid {
+    grid-template-columns: 1fr;
   }
 
   .merch-heading {

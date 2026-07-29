@@ -40,8 +40,10 @@ The build output is written to `dist/`.
 - `public/archive/` — images recovered from the old site and press archive
 - `public/fonts/` — self-hosted Cyrillic/Latin display font
 - `scripts/transcribe_audio.py` — repeatable local draft-transcription helper
+- `scripts/requirements-transcription.txt` — optional transcription dependencies
 - `docs/AI-HANDOFF.md` — project context and a safe continuation checklist
 - `docs/CONTENT-GUIDE.md` — tone, translations, lyrics-confidence notes
+- `docs/TRANSCRIPTION-NOTES.md` — method, uncertainty, and review priorities
 - `docs/DOMAIN.md` — custom-domain and deployment notes
 - `.openai/hosting.json` — OpenAI Sites project metadata
 

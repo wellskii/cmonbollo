@@ -239,16 +239,18 @@ function TickerLine({ items }: { items: readonly string[] }) {
 function SongCard({
   song,
   labels,
+  language,
 }: {
   song: Song;
   labels: MusicCopy;
+  language: Language;
 }) {
   return (
     <article className={`song-card song-${song.slug}`}>
       <header>
         <span className="track-number">{song.number}</span>
         <div>
-          <p>{song.visualCue[labels === musicCopy.it ? "it" : "ru"]}</p>
+          <p>{song.visualCue[language]}</p>
           <h3>{song.title}</h3>
         </div>
         <span className="track-duration">{song.duration}</span>
@@ -276,8 +278,8 @@ function SongCard({
               <div className="lyric-section" key={`${song.slug}-${section.label}-en`}>
                 <h5>{section.label}</h5>
                 <p>
-                  {section.en.map((line) => (
-                    <span key={line}>{line}</span>
+                  {section.en.map((line, lineIndex) => (
+                    <span key={`${section.label}-en-${lineIndex}`}>{line}</span>
                   ))}
                 </p>
               </div>
@@ -289,8 +291,8 @@ function SongCard({
               <div className="lyric-section" key={`${song.slug}-${section.label}-ru`}>
                 <h5>{section.label}</h5>
                 <p>
-                  {section.ru.map((line) => (
-                    <span key={line}>{line}</span>
+                  {section.ru.map((line, lineIndex) => (
+                    <span key={`${section.label}-ru-${lineIndex}`}>{line}</span>
                   ))}
                 </p>
               </div>
@@ -522,7 +524,12 @@ export default function Home() {
         </div>
         <div className="song-grid section-shell">
           {songs.map((song) => (
-            <SongCard key={song.slug} song={song} labels={music} />
+            <SongCard
+              key={song.slug}
+              song={song}
+              labels={music}
+              language={language}
+            />
           ))}
         </div>
       </section>
