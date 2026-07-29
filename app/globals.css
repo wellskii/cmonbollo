@@ -91,7 +91,38 @@ footer a:hover {
 }
 
 .header-cta {
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
   justify-self: end;
+  gap: 24px;
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid var(--ink);
+  background: var(--paper-bright);
+}
+
+.language-switch button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(17, 17, 15, 0.44);
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.language-switch button[aria-pressed="true"] {
+  color: var(--red);
 }
 
 .hero {
@@ -228,7 +259,6 @@ footer a:hover {
 .ticker div {
   display: flex;
   width: max-content;
-  gap: 28px;
   padding: 14px 0;
   font-size: 16px;
   font-weight: 900;
@@ -236,9 +266,16 @@ footer a:hover {
   animation: crawl 18s linear infinite;
 }
 
-.ticker div::after {
-  content: "SAMARA  ●  AUTUNNO 2026  ●  DATA DA ANNUNCIARE  ●  BOLLO NO DRIVE  ●";
-  word-spacing: 16px;
+.ticker-line {
+  display: flex;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  white-space: nowrap;
 }
 
 @keyframes crawl {
@@ -401,6 +438,108 @@ footer a:hover {
 
 .manifesto span {
   color: var(--red);
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.bollo-section {
+  display: grid;
+  grid-template-columns: 8% 42% 50%;
+  min-height: 920px;
+  padding-top: 7vw;
+  padding-bottom: 7vw;
+  border-bottom: 2px solid var(--ink);
+  background: var(--green);
+  color: var(--paper-bright);
+}
+
+.bollo-portrait {
+  position: relative;
+  align-self: center;
+  margin: 0 4vw 0 0;
+  padding: 12px 12px 64px;
+  background: var(--paper-bright);
+  box-shadow: 18px 18px 0 var(--ink);
+  color: var(--ink);
+  transform: rotate(-1.6deg);
+}
+
+.bollo-portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.bollo-portrait figcaption {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 14px 4px 0;
+}
+
+.bollo-portrait figcaption span {
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.bollo-portrait figcaption strong {
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: 34px;
+  letter-spacing: -0.03em;
+}
+
+.bollo-copy {
+  align-self: center;
+  padding-left: 3vw;
+}
+
+.bollo-copy h2 {
+  max-width: 8ch;
+  margin: 22px 0 38px;
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: clamp(82px, 9vw, 155px);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.78;
+}
+
+.bollo-copy > p {
+  max-width: 43rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.bollo-copy .bollo-lead {
+  font-size: clamp(25px, 2.4vw, 38px);
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.bollo-facts {
+  max-width: 43rem;
+  margin: 46px 0 0;
+  border-top: 2px solid currentColor;
+}
+
+.bollo-facts div {
+  display: grid;
+  grid-template-columns: 28% 72%;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 253, 244, 0.48);
+}
+
+.bollo-facts dt {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.bollo-facts dd {
+  margin: 0;
   font-family: Georgia, serif;
   font-style: italic;
 }
@@ -729,6 +868,10 @@ footer p:last-child {
     display: none;
   }
 
+  .header-actions {
+    gap: 14px;
+  }
+
   .hero {
     grid-template-columns: 1fr;
   }
@@ -758,6 +901,15 @@ footer p:last-child {
 
   .story {
     grid-template-columns: 8% 92%;
+  }
+
+  .bollo-section {
+    grid-template-columns: 8% 44% 48%;
+    min-height: 760px;
+  }
+
+  .bollo-copy h2 {
+    font-size: clamp(62px, 9vw, 104px);
   }
 
   .story-copy,
@@ -819,7 +971,11 @@ footer p:last-child {
   }
 
   .header-cta {
-    font-size: 9px;
+    display: none;
+  }
+
+  .header-actions {
+    gap: 0;
   }
 
   .hero {
@@ -855,7 +1011,8 @@ footer p:last-child {
   }
 
   .concert,
-  .story {
+  .story,
+  .bollo-section {
     grid-template-columns: 1fr;
     padding: 70px 18px;
   }
@@ -869,8 +1026,27 @@ footer p:last-child {
   .concert-main,
   .ticket,
   .story-copy,
-  .archive-stack {
+  .archive-stack,
+  .bollo-portrait,
+  .bollo-copy {
     grid-column: 1;
+  }
+
+  .bollo-section {
+    min-height: 0;
+  }
+
+  .bollo-portrait {
+    margin: 0 8px 62px 0;
+    box-shadow: 9px 9px 0 var(--ink);
+  }
+
+  .bollo-copy {
+    padding-left: 0;
+  }
+
+  .bollo-copy h2 {
+    font-size: clamp(68px, 23vw, 106px);
   }
 
   .concert h2,

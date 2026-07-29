@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cmonbollo.com"),
-  title: "C'mon, Bollo! — Di nuovo insieme · Samara 2026",
+  title: "C'mon, Bollo! — Di nuovo insieme / Снова вместе · Samara 2026",
   description:
-    "Il ritorno della band italo-volgana C'mon, Bollo! Concerto di reunion a Samara nel 2026.",
+    "Il ritorno della band italo-volgana C'mon, Bollo! / Возвращение итало-волжской группы в Самару.",
   openGraph: {
     title: "C'mon, Bollo! — Di nuovo insieme",
     description: "Samara · 2026 · Data e luogo da annunciare.",
