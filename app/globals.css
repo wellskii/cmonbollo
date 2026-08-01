@@ -1969,6 +1969,39 @@ html[data-theme="silly"] .panel-6 {
   background-position: 100% 100%;
 }
 
+html[data-theme="silly"] .song-panel {
+  position: relative;
+  min-width: 0;
+  background-color: var(--chaos-pink);
+  background-image: url("/song-atlas.png");
+  background-repeat: no-repeat;
+  background-size: 300% 200%;
+}
+
+html[data-theme="silly"] .song-panel-1 {
+  background-position: 0 0;
+}
+
+html[data-theme="silly"] .song-panel-2 {
+  background-position: 50% 0;
+}
+
+html[data-theme="silly"] .song-panel-3 {
+  background-position: 100% 0;
+}
+
+html[data-theme="silly"] .song-panel-4 {
+  background-position: 0 100%;
+}
+
+html[data-theme="silly"] .song-panel-5 {
+  background-position: 50% 100%;
+}
+
+html[data-theme="silly"] .song-panel-6 {
+  background-position: 100% 100%;
+}
+
 html[data-theme="silly"] .chaos-label {
   display: inline-block;
   width: fit-content;
@@ -1986,7 +2019,8 @@ html[data-theme="silly"] .chaos-label {
   transform: rotate(-1deg);
 }
 
-html[data-theme="silly"] .character-panel > .chaos-label {
+html[data-theme="silly"] .character-panel > .chaos-label,
+html[data-theme="silly"] .song-panel > .chaos-label {
   position: absolute;
   z-index: 2;
   top: 24px;
@@ -2426,7 +2460,7 @@ html[data-theme="silly"] .chaos-song-card:nth-child(3n) {
   transform: rotate(-0.45deg);
 }
 
-html[data-theme="silly"] .chaos-song-card > .character-panel {
+html[data-theme="silly"] .chaos-song-card > .song-panel {
   aspect-ratio: 1.28;
   border-bottom: 4px solid var(--chaos-black);
 }

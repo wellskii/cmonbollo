@@ -446,7 +446,7 @@ function SillySongCard({
   return (
     <article className="chaos-song-card">
       <div
-        className={`character-panel panel-${panel}`}
+        className={`song-panel song-panel-${panel}`}
         role="img"
         aria-label={song.visualCue[language]}
       >
