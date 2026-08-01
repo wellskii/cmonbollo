@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { songs, type Song } from "./songs";
 
 type Language = "it" | "ru";
-type Theme = "archive" | "night";
+type Theme = "archive" | "night" | "silly";
 
 const copy = {
   it: {
@@ -184,11 +184,13 @@ const themeCopy = {
     label: "Stile del sito",
     archive: "Archivio",
     night: "Notte",
+    silly: "Assurdo",
   },
   ru: {
     label: "Стиль сайта",
     archive: "Архив",
     night: "Ночь",
+    silly: "Дичь",
   },
 } as const;
 
@@ -337,7 +339,7 @@ export default function Home() {
 
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-theme");
-    if (saved === "archive" || saved === "night") {
+    if (saved === "archive" || saved === "night" || saved === "silly") {
       setTheme(saved);
     }
   }, []);
@@ -375,6 +377,13 @@ export default function Home() {
               onClick={() => setTheme("night")}
             >
               {themes.night}
+            </button>
+            <button
+              type="button"
+              aria-pressed={theme === "silly"}
+              onClick={() => setTheme("silly")}
+            >
+              {themes.silly}
             </button>
           </div>
           <div className="language-switch" role="group" aria-label={t.languageLabel}>
@@ -604,7 +613,7 @@ export default function Home() {
           <article className="product product-poster">
             <div className="product-visual" aria-hidden="true">
               <div className="poster-sheet">
-                <img src="/og.png" alt="" />
+                <img src={theme === "silly" ? "/silly-hero.png" : "/og.png"} alt="" />
               </div>
             </div>
             <div className="product-meta">

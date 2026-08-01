@@ -1858,3 +1858,907 @@ html[data-theme="night"] footer {
     margin-top: 22px;
   }
 }
+
+/* Variant 03: deliberately daft press-card collage. */
+html[data-theme="silly"] {
+  color-scheme: light;
+  --ink: #171515;
+  --paper: #f8f8f4;
+  --paper-bright: #ffffff;
+  --red: #ff536d;
+  --green: #f5df9c;
+  --coral: #ff6076;
+  --lilac: #c9bcff;
+  --magenta: #f638db;
+  --line: rgba(23, 21, 21, 0.22);
+  --silly-checks:
+    linear-gradient(45deg, var(--magenta) 25%, transparent 25% 75%, var(--magenta) 75%),
+    linear-gradient(45deg, var(--magenta) 25%, var(--lilac) 25% 75%, var(--magenta) 75%);
+  --silly-rays: repeating-conic-gradient(
+    from 12deg at 46% 56%,
+    #ff63e7 0 11deg,
+    #c9bcff 11deg 23deg,
+    #f5df9c 23deg 33deg
+  );
+}
+
+html[data-theme="silly"] body {
+  background:
+    radial-gradient(circle, rgba(23, 21, 21, 0.06) 0 1px, transparent 1.5px) 0 0 / 9px 9px,
+    #f8f8f4;
+  color: #171515;
+}
+
+html[data-theme="silly"] body::before {
+  opacity: 0.055;
+}
+
+html[data-theme="silly"] .site-header {
+  top: 10px;
+  width: calc(100% - 4vw);
+  min-height: 58px;
+  margin: 10px 2vw 24px;
+  padding: 0 18px;
+  border: 3px solid #171515;
+  border-radius: 18px 13px 20px 11px / 12px 19px 13px 18px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 6px 6px 0 #171515;
+  backdrop-filter: none;
+}
+
+html[data-theme="silly"] .wordmark {
+  font-size: 23px;
+}
+
+html[data-theme="silly"] .site-header nav a:nth-child(2n) {
+  transform: rotate(2deg);
+}
+
+html[data-theme="silly"] .language-switch,
+html[data-theme="silly"] .theme-switch {
+  border: 2px solid #171515;
+  background: #ffffff;
+  box-shadow: 3px 3px 0 #171515;
+}
+
+html[data-theme="silly"] .language-switch button,
+html[data-theme="silly"] .theme-switch button {
+  color: rgba(23, 21, 21, 0.42);
+}
+
+html[data-theme="silly"] .language-switch button[aria-pressed="true"],
+html[data-theme="silly"] .theme-switch button[aria-pressed="true"] {
+  color: #f000d8;
+  text-decoration: underline 3px wavy;
+  text-underline-offset: 4px;
+}
+
+html[data-theme="silly"] .header-cta {
+  padding: 8px 10px 6px;
+  background: #f5df9c;
+  box-shadow: 4px 4px 0 #171515;
+  transform: rotate(1deg);
+}
+
+html[data-theme="silly"] .hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: clamp(330px, 35vw, 590px) auto auto;
+  min-height: 0;
+  margin: 0 5vw 4vw;
+  overflow: hidden;
+  border: 3px solid #171515;
+  border-radius: 28px 18px 26px 15px / 18px 28px 15px 24px;
+  background: #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .hero-art {
+  grid-area: 1 / 1;
+  min-height: 0;
+  background-image: url("/silly-hero.png");
+  background-position: center top;
+  background-size: cover;
+  filter: none;
+}
+
+html[data-theme="silly"] .hero-art::after {
+  top: auto;
+  height: 44px;
+  background: #171515;
+  box-shadow: none;
+  clip-path: polygon(0 45%, 8% 62%, 17% 40%, 28% 72%, 38% 47%, 49% 70%, 61% 35%, 72% 63%, 84% 39%, 93% 68%, 100% 49%, 100% 100%, 0 100%);
+}
+
+html[data-theme="silly"] .stamp {
+  top: 24px;
+  right: 24px;
+  border: 3px solid #171515;
+  background: #ffffff;
+  color: #171515;
+  box-shadow: 5px 5px 0 #171515;
+  transform: rotate(3deg);
+}
+
+html[data-theme="silly"] .art-credit {
+  right: auto;
+  bottom: 30px;
+  left: 24px;
+  border: 2px solid #171515;
+  background: #ffffff;
+  color: #171515;
+  transform: rotate(-1deg);
+}
+
+html[data-theme="silly"] .hero-copy {
+  grid-area: 2 / 1;
+  min-height: 0;
+  padding: clamp(32px, 4vw, 64px);
+  border: 0;
+  background: #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .kicker,
+html[data-theme="silly"] .eyebrow,
+html[data-theme="silly"] .section-index {
+  width: fit-content;
+  padding: 8px 11px 7px;
+  border: 2px solid #171515;
+  background: #ffffff;
+  color: #171515;
+  box-shadow: 4px 4px 0 #171515;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  transform: rotate(-1deg);
+}
+
+html[data-theme="silly"] .hero h1 {
+  max-width: none;
+  margin: 32px 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 9.4vw, 154px);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.8;
+}
+
+html[data-theme="silly"] .hero h1 em {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #ff63e7;
+  font-family: var(--font-brush);
+  font-size: 0.86em;
+  transform: rotate(-2deg);
+}
+
+html[data-theme="silly"] .hero-note {
+  max-width: 62rem;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(17px, 1.45vw, 23px);
+  font-style: normal;
+  line-height: 1.35;
+}
+
+html[data-theme="silly"] .hero-footnote {
+  position: static;
+  grid-area: 3 / 1;
+  border-top: 2px solid #ffffff;
+  background: #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .ticker {
+  margin: 0 5vw 4vw;
+  border: 3px solid #171515;
+  border-radius: 17px 12px 20px 9px;
+  background: #f5df9c;
+  color: #171515;
+  box-shadow: 7px 7px 0 #171515;
+  transform: rotate(-0.4deg);
+}
+
+html[data-theme="silly"] .concert,
+html[data-theme="silly"] .manifesto,
+html[data-theme="silly"] .bollo-section,
+html[data-theme="silly"] .story,
+html[data-theme="silly"] .music,
+html[data-theme="silly"] .merch,
+html[data-theme="silly"] .contact {
+  position: relative;
+  width: auto;
+  margin: 0 5vw 4vw;
+  overflow: hidden;
+  border: 3px solid #171515;
+  border-radius: 24px 15px 27px 13px / 16px 25px 14px 22px;
+}
+
+html[data-theme="silly"] .section-index {
+  position: absolute;
+  z-index: 8;
+  top: 24px;
+  left: 24px;
+  padding-top: 8px;
+  writing-mode: initial;
+  transform: rotate(-2deg);
+}
+
+html[data-theme="silly"] .concert {
+  grid-template-columns: 48% 52%;
+  min-height: 620px;
+  padding: 0;
+  background: #171515;
+  color: #171515;
+}
+
+html[data-theme="silly"] .concert-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 110px 4vw 4vw;
+  background:
+    radial-gradient(circle, #f5df9c 0 3px, transparent 4px) 0 0 / 15px 15px,
+    var(--silly-rays);
+}
+
+html[data-theme="silly"] .concert-main .eyebrow {
+  margin-bottom: auto;
+}
+
+html[data-theme="silly"] .concert h2,
+html[data-theme="silly"] .story h2,
+html[data-theme="silly"] .music h2,
+html[data-theme="silly"] .merch h2,
+html[data-theme="silly"] .contact h2,
+html[data-theme="silly"] .bollo-copy h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.88;
+}
+
+html[data-theme="silly"] .concert h2 {
+  font-size: clamp(58px, 7vw, 112px);
+}
+
+html[data-theme="silly"] .ticket {
+  align-self: center;
+  margin: 58px clamp(28px, 4vw, 72px);
+  border: 3px solid #171515;
+  border-radius: 17px 10px 21px 13px;
+  background: #ffffff;
+  box-shadow: 10px 10px 0 #f638db;
+  color: #171515;
+  transform: rotate(1.4deg);
+}
+
+html[data-theme="silly"] .ticket::before,
+html[data-theme="silly"] .ticket::after {
+  border-width: 3px;
+  background: #171515;
+}
+
+html[data-theme="silly"] .ticket > a {
+  background: #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .manifesto {
+  padding: clamp(72px, 8vw, 140px) clamp(28px, 5vw, 90px);
+  background:
+    radial-gradient(circle at 86% 22%, transparent 0 65px, #f5df9c 67px 75px, transparent 77px),
+    #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .manifesto::after {
+  position: absolute;
+  right: 5%;
+  bottom: -0.2em;
+  color: #f638db;
+  content: "✦";
+  font-size: clamp(100px, 15vw, 250px);
+  transform: rotate(13deg);
+}
+
+html[data-theme="silly"] .manifesto p {
+  position: relative;
+  z-index: 1;
+  max-width: 12ch;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(52px, 8.5vw, 138px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+}
+
+html[data-theme="silly"] .manifesto span {
+  color: #ff63e7;
+}
+
+html[data-theme="silly"] .bollo-section {
+  grid-template-columns: 44% 56%;
+  min-height: 760px;
+  padding: clamp(94px, 8vw, 140px) clamp(28px, 5vw, 88px) clamp(56px, 6vw, 105px);
+  background:
+    repeating-radial-gradient(ellipse at 24% 34%, #ff63e7 0 13px, #c9bcff 14px 29px),
+    #c9bcff;
+  color: #171515;
+}
+
+html[data-theme="silly"] .bollo-portrait {
+  align-self: center;
+  margin: 0 4vw 0 0;
+  border: 3px solid #171515;
+  border-radius: 18px 12px 22px 10px;
+  box-shadow: 12px 12px 0 #171515;
+}
+
+html[data-theme="silly"] .bollo-portrait img {
+  filter: saturate(0.75) contrast(1.15);
+}
+
+html[data-theme="silly"] .bollo-copy {
+  align-self: stretch;
+  padding: clamp(30px, 4vw, 70px);
+  border: 3px solid #171515;
+  border-radius: 22px 12px 19px 15px;
+  background: #171515;
+  color: #ffffff;
+  transform: rotate(0.7deg);
+}
+
+html[data-theme="silly"] .bollo-copy .eyebrow {
+  margin-bottom: 30px;
+}
+
+html[data-theme="silly"] .bollo-copy h2 {
+  margin: 0 0 32px;
+  font-size: clamp(62px, 7vw, 120px);
+}
+
+html[data-theme="silly"] .bollo-facts div {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+html[data-theme="silly"] .story {
+  grid-template-columns: 50% 50%;
+  padding: 0;
+  background: #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .story-copy {
+  padding: 110px clamp(30px, 4vw, 70px) 64px;
+}
+
+html[data-theme="silly"] .story h2 {
+  font-size: clamp(54px, 6vw, 102px);
+}
+
+html[data-theme="silly"] .story-copy .lead {
+  color: #f5df9c;
+  font-style: normal;
+}
+
+html[data-theme="silly"] blockquote {
+  border-left-color: #ff63e7;
+}
+
+html[data-theme="silly"] .archive-stack {
+  min-height: 880px;
+  background:
+    linear-gradient(45deg, #f638db 25%, transparent 25% 75%, #f638db 75%) 0 0 / 74px 74px,
+    linear-gradient(45deg, #f638db 25%, #c9bcff 25% 75%, #f638db 75%) 37px 37px / 74px 74px;
+}
+
+html[data-theme="silly"] .archive-stack figure {
+  border: 3px solid #171515;
+  box-shadow: 12px 12px 0 #171515;
+}
+
+html[data-theme="silly"] .music {
+  background: #171515;
+}
+
+html[data-theme="silly"] .music-heading {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 31%;
+  gap: 5vw;
+  padding: 110px clamp(30px, 5vw, 84px) 74px;
+  border-bottom: 3px solid #171515;
+  background:
+    radial-gradient(circle, #f5df9c 0 2px, transparent 3px) 0 0 / 11px 11px,
+    repeating-conic-gradient(from 20deg at 78% 50%, #ff63e7 0 13deg, #c9bcff 14deg 29deg);
+  color: #171515;
+}
+
+html[data-theme="silly"] .music-heading .section-index {
+  top: 24px;
+  left: 24px;
+}
+
+html[data-theme="silly"] .music-heading > div:nth-child(2) {
+  padding-right: 0;
+}
+
+html[data-theme="silly"] .music-heading h2 {
+  max-width: 9ch;
+  font-size: clamp(58px, 7vw, 120px);
+}
+
+html[data-theme="silly"] .music-heading > div:nth-child(2) > p:last-child {
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+}
+
+html[data-theme="silly"] .music-heading aside {
+  align-self: end;
+  border: 3px solid #171515;
+  border-radius: 15px 10px 17px 8px;
+  background: #ffffff;
+  box-shadow: 9px 9px 0 #171515;
+}
+
+html[data-theme="silly"] .song-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  padding: 30px;
+  background: #ffffff;
+}
+
+html[data-theme="silly"] .song-card {
+  padding: 0 22px 24px;
+  overflow: hidden;
+  border: 3px solid #171515;
+  border-radius: 19px 12px 23px 10px / 14px 20px 12px 18px;
+  background: #171515;
+  box-shadow: 7px 7px 0 #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .song-card:nth-child(3n + 2) {
+  transform: rotate(0.55deg);
+}
+
+html[data-theme="silly"] .song-card:nth-child(3n) {
+  transform: rotate(-0.45deg);
+}
+
+html[data-theme="silly"] .song-card header {
+  min-height: 210px;
+  margin: 0 -22px;
+  padding: 26px 22px 42px;
+  border: 0;
+  background:
+    radial-gradient(circle, rgba(23, 21, 21, 0.18) 0 2px, transparent 2.5px) 0 0 / 8px 8px,
+    var(--silly-rays);
+  color: #171515;
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 86% 95%, 72% 88%, 56% 98%, 41% 91%, 24% 97%, 9% 89%, 0 94%);
+}
+
+html[data-theme="silly"] .song-card:nth-child(2n) header {
+  background:
+    linear-gradient(45deg, #f638db 25%, transparent 25% 75%, #f638db 75%) 0 0 / 54px 54px,
+    linear-gradient(45deg, #f638db 25%, #c9bcff 25% 75%, #f638db 75%) 27px 27px / 54px 54px;
+}
+
+html[data-theme="silly"] .track-number,
+html[data-theme="silly"] .track-duration {
+  padding: 6px;
+  border: 2px solid #171515;
+  background: #ffffff;
+}
+
+html[data-theme="silly"] .song-card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 3.3vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+html[data-theme="silly"] .song-motif {
+  min-height: 112px;
+  color: #ff63e7;
+  text-shadow: none;
+}
+
+html[data-theme="silly"] .transcript-status span:first-child {
+  background: #ff63e7;
+  color: #171515;
+}
+
+html[data-theme="silly"] .lyrics-grid {
+  background: #ffffff;
+  color: #171515;
+}
+
+html[data-theme="silly"] .lyrics-grid > section {
+  background: #ffffff;
+  color: #171515;
+}
+
+html[data-theme="silly"] .song-card:has(details[open]) {
+  grid-column: 1 / -1;
+  transform: none;
+}
+
+html[data-theme="silly"] .merch {
+  background: #ffffff;
+}
+
+html[data-theme="silly"] .merch-heading {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  gap: 24px 5vw;
+  padding: 110px clamp(30px, 5vw, 84px) 64px;
+  border-bottom: 3px solid #171515;
+  background:
+    radial-gradient(ellipse at 80% 20%, transparent 0 85px, rgba(23, 21, 21, 0.12) 87px 94px, transparent 96px),
+    #f5df9c;
+}
+
+html[data-theme="silly"] .merch-heading .section-index {
+  top: 24px;
+  left: 24px;
+}
+
+html[data-theme="silly"] .merch-heading .eyebrow {
+  align-self: start;
+}
+
+html[data-theme="silly"] .merch-heading h2 {
+  margin: 0;
+  font-size: clamp(54px, 6.5vw, 112px);
+}
+
+html[data-theme="silly"] .merch-heading > p:last-child {
+  grid-column: 2;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+}
+
+html[data-theme="silly"] .merch-grid {
+  gap: 22px;
+  padding: 28px;
+  border: 0;
+  background: #ffffff;
+}
+
+html[data-theme="silly"] .product {
+  overflow: hidden;
+  border: 3px solid #171515;
+  border-radius: 18px 11px 22px 9px;
+  background: #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .product-visual {
+  min-height: 440px;
+  border-bottom: 3px solid #171515;
+  background:
+    radial-gradient(circle, rgba(23, 21, 21, 0.15) 0 2px, transparent 2.5px) 0 0 / 9px 9px,
+    var(--silly-rays);
+}
+
+html[data-theme="silly"] .product-tote .product-visual {
+  background: var(--silly-checks) 0 0 / 76px 76px;
+}
+
+html[data-theme="silly"] .product-poster .product-visual {
+  background: repeating-radial-gradient(ellipse at center, #ff63e7 0 16px, #c9bcff 17px 34px);
+}
+
+html[data-theme="silly"] .product-meta {
+  background: #171515;
+  color: #ffffff;
+}
+
+html[data-theme="silly"] .product-meta p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+html[data-theme="silly"] .status {
+  border: 2px solid #ffffff;
+  background: #f638db;
+  color: #171515;
+}
+
+html[data-theme="silly"] .poster-sheet img {
+  aspect-ratio: 1.93 / 1;
+  object-position: center;
+}
+
+html[data-theme="silly"] .contact {
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+  padding: 110px clamp(30px, 5vw, 84px) 70px;
+  background:
+    radial-gradient(circle at 86% 24%, transparent 0 70px, #f5df9c 72px 80px, transparent 82px),
+    #f638db;
+  color: #171515;
+}
+
+html[data-theme="silly"] .contact .eyebrow {
+  grid-column: 1 / -1;
+}
+
+html[data-theme="silly"] .contact h2 {
+  margin: 0;
+  font-size: clamp(68px, 9vw, 152px);
+}
+
+html[data-theme="silly"] .contact > a {
+  padding: 14px 16px;
+  border: 3px solid #171515;
+  background: #ffffff;
+  box-shadow: 7px 7px 0 #171515;
+  transform: rotate(-1deg);
+}
+
+html[data-theme="silly"] footer {
+  margin: 0 5vw 28px;
+  padding: 24px;
+  border: 3px solid #171515;
+  border-radius: 18px 10px 21px 13px;
+  background: #ffffff;
+  box-shadow: 7px 7px 0 #171515;
+  color: #171515;
+}
+
+@media (max-width: 980px) {
+  html[data-theme="silly"] .hero {
+    grid-template-rows: clamp(300px, 54vw, 520px) auto auto;
+  }
+
+  html[data-theme="silly"] .concert,
+  html[data-theme="silly"] .bollo-section,
+  html[data-theme="silly"] .story {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-theme="silly"] .concert-main,
+  html[data-theme="silly"] .ticket,
+  html[data-theme="silly"] .bollo-portrait,
+  html[data-theme="silly"] .bollo-copy,
+  html[data-theme="silly"] .story-copy,
+  html[data-theme="silly"] .archive-stack {
+    grid-column: 1;
+  }
+
+  html[data-theme="silly"] .concert-main {
+    min-height: 520px;
+  }
+
+  html[data-theme="silly"] .ticket {
+    margin: 52px 8vw 64px;
+  }
+
+  html[data-theme="silly"] .bollo-portrait {
+    width: min(72%, 520px);
+    margin: 0 auto 62px;
+  }
+
+  html[data-theme="silly"] .archive-stack {
+    min-height: 800px;
+  }
+
+  html[data-theme="silly"] .song-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  html[data-theme="silly"] .merch-grid {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-theme="silly"] .product {
+    border: 3px solid #171515;
+  }
+}
+
+@media (max-width: 640px) {
+  html[data-theme="silly"] .site-header {
+    top: 6px;
+    width: calc(100% - 20px);
+    margin: 6px 10px 18px;
+    padding: 0 10px;
+    box-shadow: 4px 4px 0 #171515;
+  }
+
+  html[data-theme="silly"] .wordmark {
+    font-size: 15px;
+  }
+
+  html[data-theme="silly"] .theme-switch {
+    gap: 5px;
+    padding: 4px;
+  }
+
+  html[data-theme="silly"] .theme-switch button {
+    font-size: 6.5px;
+  }
+
+  html[data-theme="silly"] .language-switch {
+    padding: 4px;
+  }
+
+  html[data-theme="silly"] .hero,
+  html[data-theme="silly"] .ticker,
+  html[data-theme="silly"] .concert,
+  html[data-theme="silly"] .manifesto,
+  html[data-theme="silly"] .bollo-section,
+  html[data-theme="silly"] .story,
+  html[data-theme="silly"] .music,
+  html[data-theme="silly"] .merch,
+  html[data-theme="silly"] .contact,
+  html[data-theme="silly"] footer {
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+
+  html[data-theme="silly"] .hero {
+    grid-template-rows: 82vw auto;
+  }
+
+  html[data-theme="silly"] .hero-art {
+    background-position: center top;
+  }
+
+  html[data-theme="silly"] .stamp {
+    top: 15px;
+    right: 13px;
+    font-size: 10px;
+  }
+
+  html[data-theme="silly"] .art-credit {
+    right: 13px;
+    bottom: 18px;
+    left: 13px;
+    font-size: 7px;
+  }
+
+  html[data-theme="silly"] .hero-copy {
+    min-height: 0;
+    padding: 32px 20px 36px;
+  }
+
+  html[data-theme="silly"] .hero h1 {
+    margin: 28px 0 20px;
+    font-size: clamp(52px, 17vw, 82px);
+  }
+
+  html[data-theme="silly"] .hero-note {
+    font-size: 16px;
+  }
+
+  html[data-theme="silly"] .hero-footnote {
+    display: none;
+  }
+
+  html[data-theme="silly"] .section-index {
+    top: 18px;
+    left: 18px;
+    margin: 0;
+  }
+
+  html[data-theme="silly"] .concert-main {
+    min-height: 440px;
+    padding: 92px 22px 38px;
+  }
+
+  html[data-theme="silly"] .concert h2,
+  html[data-theme="silly"] .story h2,
+  html[data-theme="silly"] .music h2,
+  html[data-theme="silly"] .merch h2,
+  html[data-theme="silly"] .contact h2,
+  html[data-theme="silly"] .bollo-copy h2 {
+    font-size: clamp(46px, 15vw, 72px);
+  }
+
+  html[data-theme="silly"] .ticket {
+    margin: 42px 22px 54px;
+    padding: 20px;
+  }
+
+  html[data-theme="silly"] .manifesto {
+    padding: 78px 22px 62px;
+  }
+
+  html[data-theme="silly"] .manifesto p {
+    font-size: clamp(44px, 14vw, 66px);
+  }
+
+  html[data-theme="silly"] .bollo-section {
+    padding: 90px 22px 42px;
+  }
+
+  html[data-theme="silly"] .bollo-portrait {
+    width: 94%;
+    margin-bottom: 44px;
+  }
+
+  html[data-theme="silly"] .bollo-copy {
+    padding: 30px 22px;
+  }
+
+  html[data-theme="silly"] .story-copy {
+    padding: 92px 22px 44px;
+  }
+
+  html[data-theme="silly"] .archive-stack {
+    min-height: 680px;
+  }
+
+  html[data-theme="silly"] .music-heading,
+  html[data-theme="silly"] .merch-heading {
+    display: block;
+    padding: 92px 22px 46px;
+  }
+
+  html[data-theme="silly"] .music-heading aside {
+    margin-top: 34px;
+  }
+
+  html[data-theme="silly"] .song-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+  }
+
+  html[data-theme="silly"] .song-card,
+  html[data-theme="silly"] .song-card:nth-child(n) {
+    transform: none;
+  }
+
+  html[data-theme="silly"] .song-card header {
+    grid-template-columns: auto 1fr;
+    min-height: 190px;
+  }
+
+  html[data-theme="silly"] .song-card h3 {
+    font-size: clamp(38px, 12vw, 58px);
+  }
+
+  html[data-theme="silly"] .track-duration {
+    grid-column: 2;
+  }
+
+  html[data-theme="silly"] .merch-heading > p:last-child {
+    display: block;
+    margin-top: 26px;
+  }
+
+  html[data-theme="silly"] .merch-grid {
+    gap: 18px;
+    padding: 18px;
+  }
+
+  html[data-theme="silly"] .product-visual {
+    min-height: 420px;
+  }
+
+  html[data-theme="silly"] .contact {
+    display: block;
+    padding: 92px 22px 52px;
+  }
+
+  html[data-theme="silly"] .contact .eyebrow {
+    margin-bottom: 32px;
+  }
+
+  html[data-theme="silly"] .contact > a {
+    display: block;
+    margin-top: 38px;
+    overflow-wrap: anywhere;
+  }
+
+  html[data-theme="silly"] footer {
+    padding: 22px;
+  }
+}

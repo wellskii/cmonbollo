@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     locale: "it_IT",
     images: [
       {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
+        url: "/silly-hero.png",
+        width: 1728,
+        height: 896,
         alt: "C'mon, Bollo! — reunion a Samara nel 2026",
       },
     ],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "C'mon, Bollo! — di nuovo dal vivo",
     description: "Samara · 2026 · reunion, vecchi MP3 e una pecora.",
-    images: ["/og.png"],
+    images: ["/silly-hero.png"],
   },
 };
 
