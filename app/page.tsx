@@ -237,6 +237,45 @@ const musicCopy = {
 
 type MusicCopy = (typeof musicCopy)[Language];
 
+const sillyCopy = {
+  it: {
+    issue: "Edizione straordinaria · Samara 2026",
+    deck: "Tre cose da sapere prima che qualcuno stacchi la corrente",
+    gigTag: "CONCERTO",
+    bolloTag: "IL PERSONALE",
+    storyTag: "INDAGINE",
+    evidenceTag: "PROVE MATERIALI",
+    evidenceTitle: "È SUCCESSO DAVVERO.",
+    evidenceIntro:
+      "Un sito in Flash, una pecora senza spiegazioni e una foto del 2010. Il fascicolo è completo.",
+    songsTag: "SEI REGISTRAZIONI",
+    merchTag: "OGGETTI QUASI UTILI",
+    contactTag: "FINE DEL GIORNALE",
+    live: "DAL VIVO",
+    dossier: "LEGGI IL DOSSIER",
+    archiveCaption: "REPERTO",
+  },
+  ru: {
+    issue: "Специальный выпуск · Самара 2026",
+    deck: "Три вещи, которые надо знать, пока кто-нибудь не выдернул провод",
+    gigTag: "КОНЦЕРТ",
+    bolloTag: "СОТРУДНИК",
+    storyTag: "РАССЛЕДОВАНИЕ",
+    evidenceTag: "ВЕЩДОКИ",
+    evidenceTitle: "ЭТО ПРАВДА БЫЛО.",
+    evidenceIntro:
+      "Сайт на Flash, овца без объяснений и фотография 2010 года. Дело можно закрывать.",
+    songsTag: "ШЕСТЬ ЗАПИСЕЙ",
+    merchTag: "ПОЧТИ ПОЛЕЗНЫЕ ВЕЩИ",
+    contactTag: "КОНЕЦ ГАЗЕТЫ",
+    live: "ВЖИВУЮ",
+    dossier: "ЧИТАТЬ ДЕЛО",
+    archiveCaption: "ВЕЩДОК",
+  },
+} as const;
+
+type SillyCopy = (typeof sillyCopy)[Language];
+
 function TickerLine({ items }: { items: readonly string[] }) {
   return (
     <span className="ticker-line">
@@ -247,6 +286,47 @@ function TickerLine({ items }: { items: readonly string[] }) {
         </span>
       ))}
     </span>
+  );
+}
+
+function LyricsColumns({
+  song,
+  labels,
+  className = "lyrics-grid",
+}: {
+  song: Song;
+  labels: MusicCopy;
+  className?: string;
+}) {
+  return (
+    <div className={className}>
+      <section lang="en">
+        <h4>{labels.english}</h4>
+        {song.sections.map((section) => (
+          <div className="lyric-section" key={`${song.slug}-${section.label}-en`}>
+            <h5>{section.label}</h5>
+            <p>
+              {section.en.map((line, lineIndex) => (
+                <span key={`${section.label}-en-${lineIndex}`}>{line}</span>
+              ))}
+            </p>
+          </div>
+        ))}
+      </section>
+      <section lang="ru">
+        <h4>{labels.russian}</h4>
+        {song.sections.map((section) => (
+          <div className="lyric-section" key={`${song.slug}-${section.label}-ru`}>
+            <h5>{section.label}</h5>
+            <p>
+              {section.ru.map((line, lineIndex) => (
+                <span key={`${section.label}-ru-${lineIndex}`}>{line}</span>
+              ))}
+            </p>
+          </div>
+        ))}
+      </section>
+    </div>
   );
 }
 
@@ -285,36 +365,356 @@ function SongCard({
 
       <details>
         <summary>{labels.lyrics}</summary>
-        <div className="lyrics-grid">
-          <section lang="en">
-            <h4>{labels.english}</h4>
-            {song.sections.map((section) => (
-              <div className="lyric-section" key={`${song.slug}-${section.label}-en`}>
-                <h5>{section.label}</h5>
-                <p>
-                  {section.en.map((line, lineIndex) => (
-                    <span key={`${section.label}-en-${lineIndex}`}>{line}</span>
-                  ))}
-                </p>
-              </div>
-            ))}
-          </section>
-          <section lang="ru">
-            <h4>{labels.russian}</h4>
-            {song.sections.map((section) => (
-              <div className="lyric-section" key={`${song.slug}-${section.label}-ru`}>
-                <h5>{section.label}</h5>
-                <p>
-                  {section.ru.map((line, lineIndex) => (
-                    <span key={`${section.label}-ru-${lineIndex}`}>{line}</span>
-                  ))}
-                </p>
-              </div>
-            ))}
-          </section>
-        </div>
+        <LyricsColumns song={song} labels={labels} />
       </details>
     </article>
+  );
+}
+
+function DisplaySwitches({
+  language,
+  theme,
+  languageLabel,
+  themeLabels,
+  onLanguage,
+  onTheme,
+}: {
+  language: Language;
+  theme: Theme;
+  languageLabel: string;
+  themeLabels: (typeof themeCopy)[Language];
+  onLanguage: (language: Language) => void;
+  onTheme: (theme: Theme) => void;
+}) {
+  return (
+    <>
+      <div className="theme-switch" role="group" aria-label={themeLabels.label}>
+        <button
+          type="button"
+          aria-pressed={theme === "archive"}
+          onClick={() => onTheme("archive")}
+        >
+          {themeLabels.archive}
+        </button>
+        <button
+          type="button"
+          aria-pressed={theme === "night"}
+          onClick={() => onTheme("night")}
+        >
+          {themeLabels.night}
+        </button>
+        <button
+          type="button"
+          aria-pressed={theme === "silly"}
+          onClick={() => onTheme("silly")}
+        >
+          {themeLabels.silly}
+        </button>
+      </div>
+      <div className="language-switch" role="group" aria-label={languageLabel}>
+        <button
+          type="button"
+          aria-pressed={language === "it"}
+          onClick={() => onLanguage("it")}
+        >
+          IT
+        </button>
+        <span aria-hidden="true">/</span>
+        <button
+          type="button"
+          aria-pressed={language === "ru"}
+          onClick={() => onLanguage("ru")}
+        >
+          RU
+        </button>
+      </div>
+    </>
+  );
+}
+
+function SillySongCard({
+  song,
+  labels,
+  language,
+  panel,
+}: {
+  song: Song;
+  labels: MusicCopy;
+  language: Language;
+  panel: number;
+}) {
+  return (
+    <article className="chaos-song-card">
+      <div
+        className={`character-panel panel-${panel}`}
+        role="img"
+        aria-label={song.visualCue[language]}
+      >
+        <span className="chaos-label">{song.number}</span>
+      </div>
+      <div className="chaos-song-copy">
+        <p className="chaos-song-cue">{song.visualCue[language]}</p>
+        <h3>{song.title}</h3>
+        <div className="chaos-song-meta">
+          <span>{song.duration}</span>
+          <span>{labels.confidence[song.confidence]}</span>
+        </div>
+        <audio controls preload="metadata" src={song.audioSrc}>
+          Your browser does not support the audio element.
+        </audio>
+        <details>
+          <summary>{labels.lyrics}</summary>
+          <LyricsColumns song={song} labels={labels} className="chaos-lyrics" />
+        </details>
+      </div>
+    </article>
+  );
+}
+
+function SillySite({
+  language,
+  theme,
+  onLanguage,
+  onTheme,
+}: {
+  language: Language;
+  theme: Theme;
+  onLanguage: (language: Language) => void;
+  onTheme: (theme: Theme) => void;
+}) {
+  const t = copy[language];
+  const music = musicCopy[language];
+  const themes = themeCopy[language];
+  const s: SillyCopy = sillyCopy[language];
+
+  return (
+    <main className="chaos-site">
+      <header className="chaos-header">
+        <a className="chaos-logo" href="#chaos-top" aria-label={t.homeLabel}>
+          C’MON, BOLLO!
+        </a>
+        <nav aria-label={language === "it" ? "Navigazione principale" : "Основная навигация"}>
+          <a href="#concerto">{t.navConcert}</a>
+          <a href="#bollo">{t.navBollo}</a>
+          <a href="#musica">{music.nav}</a>
+          <a href="#merch">{t.navMerch}</a>
+        </nav>
+        <div className="chaos-controls">
+          <DisplaySwitches
+            language={language}
+            theme={theme}
+            languageLabel={t.languageLabel}
+            themeLabels={themes}
+            onLanguage={onLanguage}
+            onTheme={onTheme}
+          />
+        </div>
+      </header>
+
+      <section className="chaos-front" id="chaos-top" aria-labelledby="chaos-title">
+        <div className="chaos-front-copy">
+          <p className="chaos-label">{s.issue}</p>
+          <h1 id="chaos-title">
+            C’MON,
+            <br />
+            <i>BOLLO!</i>
+          </h1>
+          <p className="chaos-front-note">{t.heroNote}</p>
+          <div className="chaos-dateline">
+            <span>{t.whenValue}</span>
+            <span>{t.whereValue}</span>
+            <strong>{s.live}</strong>
+          </div>
+        </div>
+        <div className="character-panel panel-1 chaos-front-art" role="img" aria-label={t.heroAlt} />
+      </section>
+
+      <div className="chaos-ribbon" aria-hidden="true">
+        <span>C’MON, BOLLO! · SAMARA · 2026 · </span>
+        <span>C’MON, BOLLO! · SAMARA · 2026 · </span>
+      </div>
+
+      <section className="chaos-news" aria-labelledby="chaos-news-title">
+        <header className="chaos-section-head">
+          <span>№ 01</span>
+          <h2 id="chaos-news-title">{s.deck}</h2>
+        </header>
+
+        <div className="chaos-card-grid">
+          <article className="chaos-card" id="concerto">
+            <div className="character-panel panel-4">
+              <span className="chaos-label">{s.gigTag}</span>
+            </div>
+            <div className="chaos-card-copy">
+              <p>{t.whenValue}</p>
+              <h3>
+                {t.concertLine1} {t.concertLine2}
+              </h3>
+              <dl>
+                <div>
+                  <dt>{t.where}</dt>
+                  <dd>{t.whereValue}</dd>
+                </div>
+                <div>
+                  <dt>{t.status}</dt>
+                  <dd>{t.statusValue}</dd>
+                </div>
+              </dl>
+              <a href="mailto:cmonbollo@gmail.com?subject=C%E2%80%99mon%2C%20Bollo!%20%E2%80%94%20Samara%202026">
+                {t.notify} <Arrow />
+              </a>
+            </div>
+          </article>
+
+          <article className="chaos-card" id="bollo">
+            <div className="character-panel panel-2">
+              <span className="chaos-label">{s.bolloTag}</span>
+            </div>
+            <div className="chaos-card-copy">
+              <p>{t.bolloEyebrow}</p>
+              <h3>{t.bolloTitle}</h3>
+              <p>{t.bolloText}</p>
+              <dl>
+                <div>
+                  <dt>{t.role}</dt>
+                  <dd>{t.roleValue}</dd>
+                </div>
+                <div>
+                  <dt>{t.license}</dt>
+                  <dd>{t.licenseValue}</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+
+          <article className="chaos-card" id="storia">
+            <div className="character-panel panel-3">
+              <span className="chaos-label">{s.storyTag}</span>
+            </div>
+            <div className="chaos-card-copy">
+              <p>{t.storyEyebrow}</p>
+              <h3>{t.storyTitle}</h3>
+              <p>{t.storyLead}</p>
+              <p>{t.storyP1}</p>
+              <a href="#prove">
+                {s.dossier} <Arrow />
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="chaos-interruption" aria-label={t.manifestoLabel}>
+        <div className="character-panel panel-5" aria-hidden="true" />
+        <p>
+          {t.manifestoLine1}
+          <br />
+          {t.manifestoLine2} <strong>{t.manifestoAccent}</strong>
+        </p>
+      </section>
+
+      <section className="chaos-evidence" id="prove" aria-labelledby="evidence-title">
+        <header>
+          <p className="chaos-label">{s.evidenceTag}</p>
+          <h2 id="evidence-title">{s.evidenceTitle}</h2>
+          <p>{s.evidenceIntro}</p>
+        </header>
+        <div className="chaos-evidence-grid">
+          <figure>
+            <img src="/archive/site-2011.png" alt={t.oldSiteAlt} />
+            <figcaption>
+              {s.archiveCaption} 01 · {t.oldSiteCaption}
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="/archive/band-2010.jpg" alt={t.bandPhotoAlt} />
+            <figcaption>
+              {s.archiveCaption} 02 · {t.bandPhotoCaption}
+            </figcaption>
+          </figure>
+          <div className="character-panel panel-6 chaos-evidence-character" aria-hidden="true" />
+        </div>
+        <blockquote className="chaos-quote">
+          {t.quote}
+          <cite>{t.quoteBy}</cite>
+        </blockquote>
+      </section>
+
+      <section className="chaos-music" id="musica" aria-labelledby="chaos-music-title">
+        <header>
+          <p className="chaos-label">{s.songsTag}</p>
+          <h2 id="chaos-music-title">{music.title}</h2>
+          <p>{music.intro}</p>
+          <aside>{music.draftNote}</aside>
+        </header>
+        <div className="chaos-song-grid">
+          {songs.map((song, index) => (
+            <SillySongCard
+              key={song.slug}
+              song={song}
+              labels={music}
+              language={language}
+              panel={(index % 6) + 1}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="chaos-merch" id="merch" aria-labelledby="chaos-merch-title">
+        <header>
+          <p className="chaos-label">{s.merchTag}</p>
+          <h2 id="chaos-merch-title">{t.merchTitle}</h2>
+          <p>{t.merchIntro}</p>
+        </header>
+        <div className="chaos-merch-grid">
+          {[
+            [3, t.shirtName, t.shirtDesc],
+            [6, t.toteName, t.toteDesc],
+            [1, t.posterName, t.posterDesc],
+          ].map(([panel, name, description]) => (
+            <article key={String(name)}>
+              <div className={`character-panel panel-${panel}`} aria-hidden="true" />
+              <div>
+                <span>{t.soon}</span>
+                <h3>{name}</h3>
+                <p>{description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="chaos-contact" id="contatto" aria-labelledby="chaos-contact-title">
+        <div>
+          <p className="chaos-label">{s.contactTag}</p>
+          <h2 id="chaos-contact-title">{t.contactTitle}</h2>
+          <p>{t.contactEyebrow}</p>
+          <a href="mailto:cmonbollo@gmail.com">cmonbollo@gmail.com <Arrow /></a>
+        </div>
+        <div className="character-panel panel-6" aria-hidden="true" />
+      </section>
+
+      <footer className="chaos-footer">
+        <p>{t.footerClaim}</p>
+        <nav>
+          <a
+            href="https://web.archive.org/web/20110207235251/http://cmonbollo.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t.oldSiteLink} <Arrow />
+          </a>
+          <a
+            href="https://noelena-says-hi.livejournal.com/825.html"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t.articleLink} <Arrow />
+          </a>
+        </nav>
+        <p>© 2010–2026 · BOLLO LOSE LICENSE</p>
+      </footer>
+    </main>
   );
 }
 
@@ -349,6 +749,17 @@ export default function Home() {
     window.localStorage.setItem("cmon-bollo-theme", theme);
   }, [theme]);
 
+  if (theme === "silly") {
+    return (
+      <SillySite
+        language={language}
+        theme={theme}
+        onLanguage={(nextLanguage) => setLanguage(nextLanguage)}
+        onTheme={(nextTheme) => setTheme(nextTheme)}
+      />
+    );
+  }
+
   return (
     <main>
       <header className="site-header">
@@ -380,7 +791,7 @@ export default function Home() {
             </button>
             <button
               type="button"
-              aria-pressed={theme === "silly"}
+              aria-pressed={false}
               onClick={() => setTheme("silly")}
             >
               {themes.silly}
@@ -613,7 +1024,7 @@ export default function Home() {
           <article className="product product-poster">
             <div className="product-visual" aria-hidden="true">
               <div className="poster-sheet">
-                <img src={theme === "silly" ? "/silly-hero.png" : "/og.png"} alt="" />
+                <img src="/og.png" alt="" />
               </div>
             </div>
             <div className="product-meta">
