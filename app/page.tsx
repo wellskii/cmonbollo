@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { songs, type Song } from "./songs";
 
 type Language = "it" | "ru";
+type Theme = "archive" | "night";
 
 const copy = {
   it: {
@@ -13,40 +14,39 @@ const copy = {
     navBollo: "Bollo",
     navStory: "Storia",
     navMerch: "Merch",
-    heroKicker: "Power-pop italo-volgano · dal 2010*",
-    heroLine1: "DI NUOVO",
-    heroLine2: "INSIEME.",
+    heroKicker: "Samara · power-pop · reunion 2026",
+    heroLine1: "SIAMO",
+    heroLine2: "TORNATI.",
     heroNote:
-      "Una voce italiana vera, tre passaporti emotivi e un gregge di amplificatori tornano sul palco a Samara.",
+      "Nel 2010 suonavamo a Samara. Nel 2026 ci riproviamo. La cantante ha davvero il passaporto italiano; gli altri fanno del loro meglio.",
     heroAlt: "La pecora simbolo dei C'mon, Bollo!",
-    heroStamp: "MADE IN ITALY†",
-    heroCredit: "PECORA N. 01 / ARCHIVIO RICOSTRUITO",
-    footnote1: "* Più o meno.",
-    footnote2: "† La cantante, sì. Il resto è geografia creativa.",
-    ticker: ["SAMARA", "AUTUNNO 2026", "DATA DA ANNUNCIARE", "BOLLO NO DRIVE"],
+    heroStamp: "ITALIANI*",
+    heroCredit: "PECORA N. 01 / ANCORA SENZA SPIEGAZIONE",
+    footnote1: "* Una persona del gruppo.",
+    footnote2: "Il concerto, però, è davvero a Samara.",
+    ticker: ["SAMARA", "2026", "REUNION", "DATA DA ANNUNCIARE"],
     concertLabel: "Annuncio concerto",
     concertIndex: "01 / IL RITORNO",
     concertEyebrow: "Concerto di reunion",
-    concertLine1: "UNA NOTTE.",
-    concertLine2: "ZERO PATENTI.",
+    concertLine1: "DI NUOVO.",
+    concertLine2: "DAL VIVO.",
     when: "Quando",
     whenValue: "Autunno 2026",
     where: "Dove",
     whereValue: "Samara · da annunciare",
     status: "Stato",
-    statusValue: "Molto insieme",
-    notify: "Avvisami quando si sa tutto",
+    statusValue: "Prove in corso",
+    notify: "Scrivimi quando c’è una data",
     manifestoLabel: "Manifesto del gruppo",
-    manifestoLine1: "CI SIAMO SCIOLTI ABBASTANZA.",
-    manifestoLine2: "ORA",
+    manifestoLine1: "QUINDICI ANNI DI PAUSA.",
+    manifestoLine2: "BASTA.",
     manifestoAccent: "SUONIAMO.",
     bolloIndex: "02 / IL VERO BOLLO",
-    bolloEyebrow: "Gorilla multi-strumentista · patente revocata",
+    bolloEyebrow: "Gorilla. Musicista. Senza patente.",
     bolloTitle: "BOLLO NO DRIVE.",
-    bolloLead:
-      "Chitarra? Sì. Batteria? Anche. Volante? Assolutamente no.",
+    bolloLead: "Suona tutto. Guidare, invece, no.",
     bolloText:
-      "Bollo è il santo patrono dei musicisti senza patente e la ragione per cui questo gruppo ha un nome. Dopo quindici anni è finalmente arrivato sul sito.",
+      "Bollo viene da The Mighty Boosh. È il gorilla che perde la patente e ci ha dato il nome. La pecora non c’entra niente. Per questo è rimasta.",
     bolloAlt:
       "Ritratto a collage di Bollo, gorilla musicista con chitarra e bacchette",
     bolloDossier: "DOSSIER N. 01",
@@ -56,15 +56,15 @@ const copy = {
     roleValue: "Tutti gli strumenti",
     license: "Patente",
     licenseValue: "Persa",
-    storyIndex: "03 / LA STORIA VERA QUASI",
-    storyEyebrow: "Samara, 2010 → Italia, emotivamente",
+    storyIndex: "03 / COS’È SUCCESSO",
+    storyEyebrow: "Samara · 2010–2026",
     storyTitle: "NON ERA MONTY PYTHON.",
     storyLead:
-      "Il nome arriva da The Mighty Boosh: Bollo, gorilla multi-strumentista, perde la patente. Noi, invece, perdiamo quindici anni.",
+      "Il nome viene da The Mighty Boosh. Bollo perde la patente. Noi perdiamo quindici anni.",
     storyP1:
-      "Nel 2010 suoniamo allo Snickers Urbania di Samara, pubblichiamo power-pop, apriamo un sito con Flash e mettiamo una pecora in copertina senza spiegare niente. Nel 2011 esce il singolo The Far, The Farther and The Beyond. Poi: silenzio discografico, vite adulte, cittadinanze interessanti.",
+      "Nel 2010 suoniamo allo Snickers Urbania di Samara. Poi registriamo canzoni, apriamo un sito in Flash e ci mettiamo una pecora senza spiegazioni. Nel 2011 esce The Far, The Farther and The Beyond. Poi la band si ferma e la vita continua.",
     storyP2:
-      "Oggi torniamo come gruppo italiano. È una scelta artistica, burocratica e soprattutto divertente.",
+      "Ora ci ritroviamo per un concerto. La cantante è davvero cittadina italiana, quindi per una sera saremo una band italiana. Tecnicamente basta.",
     quote: "“C’mon, Bollo, get your monkey anus at the steering wheel.”",
     quoteBy: "— Vince Noir, motivo ufficiale del nome",
     oldSiteAlt:
@@ -72,22 +72,22 @@ const copy = {
     oldSiteCaption: "cmonbollo.com · 07.02.2011",
     bandPhotoAlt: "Foto d'archivio dei C'mon, Bollo! nel 2010",
     bandPhotoCaption: "“Suonano come appaiono” · Samara, 2010",
-    merchIndex: "04 / MERCE MOLTO UFFICIALE",
-    merchEyebrow: "Prima edizione della seconda venuta",
-    merchTitle: "PORTA LA PECORA. E BOLLO.",
+    merchIndex: "04 / MERCH",
+    merchEyebrow: "Piccola tiratura per il concerto",
+    merchTitle: "MAGLIETTE. BORSE. PECORE.",
     merchIntro:
-      "Tre oggetti in preparazione per la sera del concerto. Tiratura piccola, umorismo grande.",
+      "Prepariamo qualcosa per il concerto. Quello che riusciamo a stampare, esisterà.",
     shirtName: "Maglietta «Di nuovo insieme»",
     shirtDesc: "Cotone nero · stampa sporca avorio/rosso",
     toteName: "Borsa «Bollo no drive»",
-    toteDesc: "Tela naturale · inchiostro italiano molto serio",
+    toteDesc: "Tela naturale · Bollo ancora senza patente",
     posterName: "Poster «Samara · 2026»",
-    posterDesc: "Risograph A2 · numerato, forse correttamente",
+    posterDesc: "Poster A2 · Samara 2026",
     soon: "PRESTO",
     contactIndex: "05 / CONTATTO",
-    contactEyebrow: "Per date, stampa, passaporti, gorilla e pecore",
-    contactTitle: "SCRIVICI, BELLA.",
-    footerClaim: "C’MON, BOLLO! · GRUPPO ITALIANO CON RADICI A SAMARA",
+    contactEyebrow: "Concerti, stampa, vecchi demo e correzioni ai testi",
+    contactTitle: "SCRIVICI.",
+    footerClaim: "C’MON, BOLLO! · SAMARA · DI NUOVO INSIEME",
     oldSiteLink: "Sito 2011",
     articleLink: "Articolo 2010",
   },
@@ -98,40 +98,39 @@ const copy = {
     navBollo: "Болло",
     navStory: "История",
     navMerch: "Мерч",
-    heroKicker: "Итало-волжский пауэр-поп · с 2010 года*",
-    heroLine1: "СНОВА",
-    heroLine2: "ВМЕСТЕ.",
+    heroKicker: "Самара · пауэр-поп · реюнион 2026",
+    heroLine1: "МЫ",
+    heroLine2: "ВЕРНУЛИСЬ.",
     heroNote:
-      "Одна настоящая итальянская вокалистка, три эмоциональных паспорта и стадо усилителей возвращаются на сцену в Самаре.",
+      "В 2010-м мы играли в Самаре. В 2026-м решили повторить. У вокалистки правда итальянский паспорт. Остальные просто хорошо держатся.",
     heroAlt: "Овца — символ группы C'mon, Bollo!",
-    heroStamp: "СДЕЛАНО В ИТАЛИИ†",
-    heroCredit: "ОВЦА № 01 / АРХИВ РЕКОНСТРУИРОВАН",
-    footnote1: "* Плюс-минус.",
-    footnote2: "† Вокалистка — да. Остальное — творческая география.",
-    ticker: ["САМАРА", "ОСЕНЬ 2026", "ДАТА СКОРО", "BOLLO NO DRIVE"],
+    heroStamp: "ИТАЛЬЯНЦЫ*",
+    heroCredit: "ОВЦА № 01 / ВСЁ ЕЩЁ БЕЗ ОБЪЯСНЕНИЙ",
+    footnote1: "* Один человек из группы.",
+    footnote2: "Концерт, впрочем, правда в Самаре.",
+    ticker: ["САМАРА", "2026", "РЕЮНИОН", "ДАТА СКОРО"],
     concertLabel: "Анонс концерта",
     concertIndex: "01 / ВОЗВРАЩЕНИЕ",
     concertEyebrow: "Реюнион-концерт",
-    concertLine1: "ОДНА НОЧЬ.",
-    concertLine2: "НОЛЬ ПРАВ.",
+    concertLine1: "СНОВА.",
+    concertLine2: "ВЖИВУЮ.",
     when: "Когда",
     whenValue: "Осень 2026",
     where: "Где",
     whereValue: "Самара · скоро объявим",
     status: "Статус",
-    statusValue: "Очень вместе",
-    notify: "Сообщите, когда всё станет известно",
+    statusValue: "Репетируем",
+    notify: "Напишите, когда будет дата",
     manifestoLabel: "Манифест группы",
-    manifestoLine1: "МЫ ДОСТАТОЧНО ДОЛГО БЫЛИ РАСПУЩЕНЫ.",
-    manifestoLine2: "ТЕПЕРЬ",
+    manifestoLine1: "ПЯТНАДЦАТЬ ЛЕТ ПЕРЕРЫВА.",
+    manifestoLine2: "ХВАТИТ.",
     manifestoAccent: "ИГРАЕМ.",
     bolloIndex: "02 / НАСТОЯЩИЙ БОЛЛО",
-    bolloEyebrow: "Горилла-мультиинструменталист · права отозваны",
+    bolloEyebrow: "Горилла. Музыкант. Без прав.",
     bolloTitle: "BOLLO NO DRIVE.",
-    bolloLead:
-      "Гитара? Да. Барабаны? Тоже. Руль? Категорически нет.",
+    bolloLead: "Играет на всём. За руль нельзя.",
     bolloText:
-      "Болло — святой покровитель музыкантов без водительских прав и причина, по которой у группы такое имя. Спустя пятнадцать лет он наконец появился на сайте.",
+      "Болло — горилла из The Mighty Boosh, потерявшая права. От него у нас название. Овца тут вообще ни при чём, поэтому мы её оставили.",
     bolloAlt:
       "Коллажный портрет Болло — гориллы-музыканта с гитарой и барабанными палочками",
     bolloDossier: "ДОСЬЕ № 01",
@@ -141,15 +140,15 @@ const copy = {
     roleValue: "Все инструменты",
     license: "Права",
     licenseValue: "Потеряны",
-    storyIndex: "03 / ПОЧТИ ПРАВДИВАЯ ИСТОРИЯ",
-    storyEyebrow: "Самара, 2010 → Италия, эмоционально",
+    storyIndex: "03 / ЧТО ЭТО БЫЛО",
+    storyEyebrow: "Самара · 2010–2026",
     storyTitle: "ЭТО НЕ МОНТИ ПАЙТОН.",
     storyLead:
-      "Название пришло из The Mighty Boosh: Болло, горилла-мультиинструменталист, теряет права. Мы вместо этого теряем пятнадцать лет.",
+      "Название пришло из The Mighty Boosh. Болло теряет права. Мы теряем пятнадцать лет.",
     storyP1:
-      "В 2010 году мы играем на Snickers Urbania в Самаре, выпускаем пауэр-поп, открываем сайт на Flash и без объяснений помещаем овцу на обложку. В 2011-м выходит сингл The Far, The Farther and The Beyond. Дальше — музыкальная тишина, взрослая жизнь и интересные гражданства.",
+      "В 2010 году мы играем на Snickers Urbania в Самаре. Потом записываем песни, делаем сайт на Flash и без объяснений помещаем туда овцу. В 2011-м выходит The Far, The Farther and The Beyond. Потом группа останавливается, а жизнь продолжается.",
     storyP2:
-      "Сегодня мы возвращаемся как итальянская группа. Это решение художественное, бюрократическое и, главное, смешное.",
+      "Теперь собираемся ради одного концерта. Вокалистка действительно гражданка Италии, поэтому на один вечер мы итальянская группа. Формально всё сходится.",
     quote: "“C’mon, Bollo, get your monkey anus at the steering wheel.”",
     quoteBy: "— Винс Нуар, официальная причина названия",
     oldSiteAlt:
@@ -157,22 +156,22 @@ const copy = {
     oldSiteCaption: "cmonbollo.com · 07.02.2011",
     bandPhotoAlt: "Архивная фотография C'mon, Bollo! 2010 года",
     bandPhotoCaption: "«Звучат так же, как выглядят» · Самара, 2010",
-    merchIndex: "04 / ОЧЕНЬ ОФИЦИАЛЬНЫЙ МЕРЧ",
-    merchEyebrow: "Первый тираж второго пришествия",
-    merchTitle: "НОСИ ОВЦУ. И БОЛЛО.",
+    merchIndex: "04 / МЕРЧ",
+    merchEyebrow: "Небольшой тираж к концерту",
+    merchTitle: "ФУТБОЛКИ. СУМКИ. ОВЦА.",
     merchIntro:
-      "Три предмета готовятся к вечеру концерта. Маленький тираж, большой юмор.",
+      "Сделаем несколько вещей к концерту. Что успеем напечатать — то и будет.",
     shirtName: "Футболка «Снова вместе»",
-    shirtDesc: "Чёрный хлопок · грязная печать айвори/красным",
+    shirtDesc: "Чёрный хлопок · белая и красная печать",
     toteName: "Сумка «Bollo no drive»",
-    toteDesc: "Натуральный холст · очень серьёзная итальянская краска",
+    toteDesc: "Натуральный холст · Болло всё ещё без прав",
     posterName: "Постер «Самара · 2026»",
-    posterDesc: "Ризография A2 · пронумерован, возможно правильно",
+    posterDesc: "Постер A2 · Самара 2026",
     soon: "СКОРО",
     contactIndex: "05 / КОНТАКТ",
-    contactEyebrow: "По концертам, прессе, паспортам, гориллам и овцам",
-    contactTitle: "ПИШИТЕ, BELLA.",
-    footerClaim: "C’MON, BOLLO! · ИТАЛЬЯНСКАЯ ГРУППА С КОРНЯМИ В САМАРЕ",
+    contactEyebrow: "Концерты, пресса, старые демо и поправки к текстам",
+    contactTitle: "ПИШИТЕ.",
+    footerClaim: "C’MON, BOLLO! · САМАРА · СНОВА ВМЕСТЕ",
     oldSiteLink: "Сайт 2011",
     articleLink: "Статья 2010",
   },
@@ -180,16 +179,29 @@ const copy = {
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
+const themeCopy = {
+  it: {
+    label: "Stile del sito",
+    archive: "Archivio",
+    night: "Notte",
+  },
+  ru: {
+    label: "Стиль сайта",
+    archive: "Архив",
+    night: "Ночь",
+  },
+} as const;
+
 const musicCopy = {
   it: {
     nav: "Musica",
     index: "04 / DAL NASTRO",
     eyebrow: "Sei canzoni · registrazioni originali",
-    title: "PREMI PLAY. POI CORREGGICI.",
+    title: "SEI CANZONI. NESSUNA SCUSA.",
     intro:
-      "Il repertorio riappare direttamente dagli MP3. I testi inglesi sono bozze ricostruite dall’audio; le righe dubbie restano visibilmente dubbie.",
+      "Questi sono i nostri vecchi MP3. I testi inglesi sono stati ricostruiti a orecchio: dove non siamo sicuri, lo diciamo.",
     draftNote:
-      "Trascrizione in lavorazione: strumenti, cori e quindici anni di distanza possono avere mangiato qualche parola.",
+      "Una macchina ha ascoltato le canzoni due volte. Non ha capito tutto. Onestamente, neanche noi.",
     lyrics: "Apri testo e traduzione",
     english: "English · draft lyrics",
     russian: "Русский · перевод",
@@ -197,18 +209,18 @@ const musicCopy = {
     confidence: {
       high: "chiarezza alta",
       medium: "da verificare",
-      low: "molte righe dubbie",
+      low: "molte parole dubbie",
     },
   },
   ru: {
     nav: "Песни",
     index: "04 / С ПЛЁНКИ",
     eyebrow: "Шесть песен · оригинальные записи",
-    title: "НАЖМИ PLAY. ПОТОМ ПОПРАВЬ НАС.",
+    title: "ШЕСТЬ ПЕСЕН. НИКАКИХ ОПРАВДАНИЙ.",
     intro:
-      "Репертуар возвращается прямо из MP3. Английские тексты — черновая расшифровка по звуку; сомнительные строки честно оставлены сомнительными.",
+      "Это наши старые MP3. Английские тексты сняты на слух: где не уверены, так и написано.",
     draftNote:
-      "Расшифровка в работе: инструменты, бэк-вокал и пятнадцать лет расстояния могли съесть отдельные слова.",
+      "Машина прослушала песни два раза. Поняла не всё. Мы, если честно, тоже.",
     lyrics: "Открыть текст и перевод",
     english: "English · черновой текст",
     russian: "Русский · перевод",
@@ -306,8 +318,10 @@ function SongCard({
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("it");
+  const [theme, setTheme] = useState<Theme>("archive");
   const t = copy[language];
   const music = musicCopy[language];
+  const themes = themeCopy[language];
 
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-language");
@@ -320,6 +334,18 @@ export default function Home() {
     document.documentElement.lang = language;
     window.localStorage.setItem("cmon-bollo-language", language);
   }, [language]);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("cmon-bollo-theme");
+    if (saved === "archive" || saved === "night") {
+      setTheme(saved);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("cmon-bollo-theme", theme);
+  }, [theme]);
 
   return (
     <main>
@@ -335,6 +361,22 @@ export default function Home() {
           <a href="#merch">{t.navMerch}</a>
         </nav>
         <div className="header-actions">
+          <div className="theme-switch" role="group" aria-label={themes.label}>
+            <button
+              type="button"
+              aria-pressed={theme === "archive"}
+              onClick={() => setTheme("archive")}
+            >
+              {themes.archive}
+            </button>
+            <button
+              type="button"
+              aria-pressed={theme === "night"}
+              onClick={() => setTheme("night")}
+            >
+              {themes.night}
+            </button>
+          </div>
           <div className="language-switch" role="group" aria-label={t.languageLabel}>
             <button
               type="button"
@@ -468,25 +510,7 @@ export default function Home() {
           <p className="eyebrow">{t.storyEyebrow}</p>
           <h2 id="story-title">{t.storyTitle}</h2>
           <p className="lead">{t.storyLead}</p>
-          <p>
-            {language === "it" ? (
-              <>
-                Nel 2010 suoniamo allo Snickers Urbania di Samara, pubblichiamo
-                power-pop, apriamo un sito con Flash e mettiamo una pecora in
-                copertina senza spiegare niente. Nel 2011 esce il singolo{" "}
-                <i>The Far, The Farther and The Beyond</i>. Poi: silenzio
-                discografico, vite adulte, cittadinanze interessanti.
-              </>
-            ) : (
-              <>
-                В 2010 году мы играем на Snickers Urbania в Самаре, выпускаем
-                пауэр-поп, открываем сайт на Flash и без объяснений помещаем овцу
-                на обложку. В 2011-м выходит сингл{" "}
-                <i>The Far, The Farther and The Beyond</i>. Дальше — музыкальная
-                тишина, взрослая жизнь и интересные гражданства.
-              </>
-            )}
-          </p>
+          <p>{t.storyP1}</p>
           <p>{t.storyP2}</p>
           <blockquote>
             {t.quote}

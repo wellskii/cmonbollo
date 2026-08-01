@@ -9,6 +9,10 @@ zine, not a polished corporate nostalgia project.
 Italian copy may be playfully over-serious. Russian copy should sound natural
 rather than mechanically mirroring Italian syntax.
 
+Keep public copy short and concrete. Prefer one fact plus one joke. Avoid
+advertising language, invented metaphors, emotional bureaucracy, and phrases
+that sound clever but do not tell the reader anything.
+
 ## Canon
 
 - Name: `C'mon, Bollo!`

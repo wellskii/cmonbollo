@@ -30,6 +30,12 @@ The visual system combines:
 - song-specific graphic motifs: pencil-box doodles, warning dots, carbon-copy
   layers, rain/air, Camden ticket geometry, and a jagged wall.
 
+Visitors can switch between two saved visual modes:
+
+- `archive` — paper, photocopy texture, Italian red and green;
+- `night` — black space, coral/lilac/magenta doodles, inspired by the loose
+  energy of Pure's visual language without copying its artwork.
+
 ## Important limitations
 
 - The reunion date, venue, ticket URL, and merch availability are placeholders.

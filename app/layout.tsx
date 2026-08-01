@@ -3,12 +3,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cmonbollo.com"),
-  title: "C'mon, Bollo! — Di nuovo insieme / Снова вместе · Samara 2026",
+  title: "C'mon, Bollo! — reunion a Samara / реюнион в Самаре",
   description:
-    "Il ritorno della band italo-volgana C'mon, Bollo! / Возвращение итало-волжской группы в Самару.",
+    "C'mon, Bollo! torna a suonare a Samara. Песни, архив и реюнион-концерт группы C'mon, Bollo!",
   openGraph: {
-    title: "C'mon, Bollo! — Di nuovo insieme",
-    description: "Samara · 2026 · Data e luogo da annunciare.",
+    title: "C'mon, Bollo! — di nuovo dal vivo",
+    description: "Samara · 2026 · reunion, vecchi MP3 e una pecora.",
     type: "website",
     locale: "it_IT",
     images: [
@@ -16,14 +16,14 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "C'mon, Bollo! Di nuovo insieme — Samara 2026",
+        alt: "C'mon, Bollo! — reunion a Samara nel 2026",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "C'mon, Bollo! — Di nuovo insieme",
-    description: "Samara · 2026 · Data e luogo da annunciare.",
+    title: "C'mon, Bollo! — di nuovo dal vivo",
+    description: "Samara · 2026 · reunion, vecchi MP3 e una pecora.",
     images: ["/og.png"],
   },
 };
