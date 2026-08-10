@@ -38,6 +38,7 @@ The build output is written to `dist/`.
 
 - `app/page.tsx` — page structure, trilingual UI copy, interactions
 - `app/festival.ts` — confirmed festival facts, public running order, and trilingual band notes
+- `app/poster-02/` — standalone 4:5 typographic festival poster and print styles
 - `app/songs.ts` — track metadata, English lyrics, Russian translations
 - `app/globals.css` — the complete visual system and responsive layout
 - `app/layout.tsx` — metadata for cmonbollo.com and social previews

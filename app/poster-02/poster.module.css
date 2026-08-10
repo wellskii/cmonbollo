@@ -1,0 +1,326 @@
+.posterPage {
+  --poster-black: #11110f;
+  --poster-white: #f2eee5;
+  --poster-blue: #173cff;
+  --poster-orange: #ff542e;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  background: #161616;
+  color: var(--poster-black);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:global(body:has(.posterPage)) {
+  background: #161616;
+}
+
+:global(body:has(.posterPage)::before) {
+  display: none;
+}
+
+.poster {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  width: min(100vw, 80vh);
+  height: min(100vh, 125vw);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, transparent 49.82%, rgba(17, 17, 15, 0.12) 50%, transparent 50.18%),
+    var(--poster-white);
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+.poster::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image: radial-gradient(rgba(17, 17, 15, 0.22) 0.6px, transparent 0.8px);
+  background-size: 5px 5px;
+  content: "";
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.utilityRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 2.3cqw 2.8cqw 1.8cqw;
+  border-bottom: 0.48cqw solid var(--poster-black);
+  font-size: 1.45cqw;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.utilityRow span:nth-child(2) {
+  text-align: center;
+}
+
+.utilityRow span:last-child {
+  text-align: right;
+}
+
+.masthead {
+  position: relative;
+  min-height: 0;
+  padding: 2.3cqw 2.8cqw 1.8cqw;
+  overflow: hidden;
+  border-bottom: 0.48cqw solid var(--poster-black);
+}
+
+.overline {
+  width: fit-content;
+  margin: 0;
+  padding: 0.8cqw 1.1cqw 0.65cqw;
+  background: var(--poster-black);
+  color: var(--poster-white);
+  font-size: 1.45cqw;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.masthead h1 {
+  position: relative;
+  z-index: 2;
+  margin: 3.1cqw 0 0;
+  color: var(--poster-black);
+  font-size: 7.45cqw;
+  font-stretch: condensed;
+  font-weight: 950;
+  letter-spacing: -0.075em;
+  line-height: 0.79;
+  text-transform: uppercase;
+}
+
+.masthead h1 span {
+  display: block;
+}
+
+.masthead h1 span:nth-child(2) {
+  color: var(--poster-blue);
+  font-size: 0.79em;
+  letter-spacing: -0.065em;
+}
+
+.masthead h1 span:last-child {
+  color: var(--poster-orange);
+  font-size: 1.45em;
+  letter-spacing: -0.095em;
+}
+
+.dateMark {
+  position: absolute;
+  right: -2.1cqw;
+  bottom: -4.4cqw;
+  display: flex;
+  align-items: center;
+  color: var(--poster-black);
+  font-size: 19.8cqw;
+  font-weight: 950;
+  letter-spacing: -0.1em;
+  line-height: 0.72;
+  white-space: nowrap;
+}
+
+.dateMark strong {
+  font: inherit;
+}
+
+.dateMark strong:first-child {
+  color: transparent;
+  -webkit-text-stroke: 0.55cqw var(--poster-black);
+}
+
+.dateMark i {
+  position: relative;
+  top: -0.3cqw;
+  margin: 0 0.8cqw 0 0.1cqw;
+  color: var(--poster-orange);
+  font-size: 0.52em;
+  font-style: normal;
+}
+
+.year {
+  position: absolute;
+  right: 3.2cqw;
+  top: 2.8cqw;
+  margin: 0;
+  color: var(--poster-blue);
+  font-size: 3cqw;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  writing-mode: vertical-rl;
+}
+
+.runningOrder {
+  background: var(--poster-black);
+  color: var(--poster-white);
+}
+
+.runningHead,
+.runningOrder li {
+  display: grid;
+  grid-template-columns: 13.5cqw 1fr 7cqw;
+  align-items: center;
+}
+
+.runningHead {
+  min-height: 3.2cqw;
+  border-bottom: 0.2cqw solid rgba(242, 238, 229, 0.55);
+  color: var(--poster-orange);
+  font-size: 1.1cqw;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+}
+
+.runningHead span,
+.runningOrder li > * {
+  padding-right: 1.5cqw;
+  padding-left: 2.8cqw;
+}
+
+.runningHead span:last-child,
+.runningOrder li > span:last-child {
+  padding-right: 2.3cqw;
+  padding-left: 0;
+  text-align: right;
+}
+
+.runningOrder ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.runningOrder li {
+  min-height: 5.65cqw;
+  border-bottom: 0.18cqw solid rgba(242, 238, 229, 0.38);
+}
+
+.runningOrder li:last-child {
+  border-bottom: 0;
+}
+
+.runningOrder time {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  background: var(--poster-blue);
+  font-size: 2.35cqw;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.runningOrder li:nth-child(1) time {
+  background: var(--poster-orange);
+  color: var(--poster-black);
+}
+
+.runningOrder strong {
+  overflow: hidden;
+  font-size: 2.4cqw;
+  font-weight: 950;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.runningOrder li > span:last-child {
+  font-family: "Courier New", monospace;
+  font-size: 1.35cqw;
+  font-weight: 700;
+}
+
+.venueBlock {
+  display: grid;
+  grid-template-columns: 29cqw 1fr 16cqw;
+  min-height: 11.4cqw;
+  border-top: 0.48cqw solid var(--poster-black);
+  background: var(--poster-orange);
+  color: var(--poster-black);
+}
+
+.venueName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.3cqw 2.8cqw;
+  border-right: 0.48cqw solid var(--poster-black);
+}
+
+.venueName span {
+  font-size: 1.35cqw;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.venueName strong {
+  font-size: 5.4cqw;
+  font-weight: 950;
+  letter-spacing: -0.07em;
+  line-height: 0.82;
+}
+
+.venueDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.4cqw 2.5cqw;
+}
+
+.venueDetails p {
+  margin: 0;
+  font-size: 1.65cqw;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.venueDetails p:last-child {
+  margin-top: 0.4cqw;
+  font-size: 2.4cqw;
+}
+
+.registration {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5cqw;
+  border-left: 0.48cqw solid var(--poster-black);
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 0.9cqw, rgba(17, 17, 15, 0.12) 0.9cqw 1.8cqw),
+    var(--poster-white);
+}
+
+.registration span {
+  font-size: 3.2cqw;
+  font-weight: 950;
+  letter-spacing: -0.08em;
+}
+
+.registration b {
+  font-family: "Courier New", monospace;
+  font-size: 1.05cqw;
+}
+
+@media print {
+  .posterPage {
+    min-height: 0;
+    background: transparent;
+  }
+
+  .poster {
+    width: 100vw;
+  }
+
+  @page {
+    size: 4in 5in;
+    margin: 0;
+  }
+}

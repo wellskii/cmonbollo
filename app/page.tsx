@@ -603,6 +603,9 @@ function FestivalPoster({ language }: { language: Language }) {
             </li>
           ))}
         </ol>
+        <a className="festival-poster-alt" href="/poster-02" target="_blank">
+          {f.posterTwoLink} <Arrow />
+        </a>
       </figcaption>
     </figure>
   );

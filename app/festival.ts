@@ -28,6 +28,7 @@ export const festival = {
       lineupIntro:
         "Power-pop, alternative, emo, hardcore e post-rock. Noi apriamo: arrivare tardi sarebbe molto 2011.",
       eventLink: "Pagina del festival",
+      posterTwoLink: "Locandina tipografica 02",
       profileLink: "Ascolta / scopri",
       posterAlt:
         "Locandina del festival Что-то почувствовать, 16 agosto 2026 al bar Hvat di Samara",
@@ -43,6 +44,7 @@ export const festival = {
       lineupIntro:
         "Пауэр-поп, альтернатива, эмо, хардкор и пост-рок. Мы открываем — опаздывать будет очень по-2011-му.",
       eventLink: "Страница фестиваля",
+      posterTwoLink: "Типографическая афиша 02",
       profileLink: "Слушать / узнать",
       posterAlt:
         "Афиша фестиваля «Что-то почувствовать», 16 августа 2026 года в баре «Хват», Самара",
@@ -58,6 +60,7 @@ export const festival = {
       lineupIntro:
         "Power pop, alternative, emo, hardcore and post-rock. We open the show, so arriving late would be extremely 2011.",
       eventLink: "Festival page",
+      posterTwoLink: "Typographic poster 02",
       profileLink: "Listen / discover",
       posterAlt:
         "Poster for the Feel Something festival on 16 August 2026 at Hvat bar in Samara",

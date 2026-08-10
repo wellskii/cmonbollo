@@ -27,6 +27,8 @@ Confirmed concert data and the public five-band running order live in
 `app/festival.ts`. Keep these facts typed and shared by all three site designs.
 The generated festival artwork is deliberately cropped to its illustration;
 all event text is rendered as accessible HTML so spelling and times stay exact.
+`/poster-02` is a second, deliberately non-illustrative 4:5 poster: a strict
+blue/orange/black typographic grid suitable for browser export or printing.
 
 The visual system combines:
 

@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -33,6 +33,7 @@ test("server-renders the confirmed reunion concert", async () => {
   assert.match(html, /Галактионовская, 40/);
   assert.match(html, /festival-illustration-2026\.png/);
   assert.match(html, /https:\/\/vk\.ru\/justtofeelsomethingfest63/);
+  assert.match(html, /href="\/poster-02"/);
   assert.doesNotMatch(html, /soundcheck|саундчек/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
 
@@ -49,6 +50,20 @@ test("server-renders the confirmed reunion concert", async () => {
     assert.ok(index > previousIndex, `${band} must appear in public set order`);
     previousIndex = index;
   }
+});
+
+test("server-renders the standalone typographic poster", async () => {
+  const response = await render("/poster-02");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /АФИША 02/);
+  assert.match(html, /ЧТО-ТО/);
+  assert.match(html, /ПОЧУВСТВОВАТЬ/);
+  assert.match(html, /ГАЛАКТИОНОВСКАЯ, 40/);
+  assert.match(html, /C’MON, BOLLO!/);
+  assert.match(html, /iknownothing/);
+  assert.doesNotMatch(html, /soundcheck|саундчек/i);
 });
 
 test("keeps festival facts typed and trilingual", async () => {
