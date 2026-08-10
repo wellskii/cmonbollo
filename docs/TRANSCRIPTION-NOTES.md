@@ -8,29 +8,23 @@ two recognition passes:
 - `small.en`
 - `distil-medium.en`
 
-Both passes used faster-whisper on CPU. The editorial draft in `app/songs.ts`
-keeps phrases where the passes and repeated choruses broadly agree. Conflicting
-or implausible phrases are marked `[unclear]`; they were not silently rewritten
-into smoother English.
+Both passes used faster-whisper on CPU. That first editorial draft preserved
+uncertain lines as `[unclear]` instead of silently rewriting them.
 
-## Why the draft is uncertain
+On 2026-08-09, El Po supplied the complete English lyrics for all six songs on
+behalf of the band. `app/songs.ts` now contains that confirmed version and a new
+Russian translation. The machine draft is historical process information, not
+the current published source.
+
+## Why the machine draft was uncertain
 
 Speech models are not lyric-sheet generators. Distorted guitars, cymbals,
 backing vocals, room sound, accent, and repeated melodic vowels all reduce word
 accuracy. The model may also hear a grammatically plausible phrase that was
 never sung.
 
-The Russian text is a translation of the current English draft, not a separate
-transcription and not an attempt to repair uncertain English.
-
-## Review priority
-
-1. **Bum-bum** — most verse and pre-chorus lines need a band member.
-2. **Airy** — the main image and several “mesmerizing” lines remain unclear.
-3. **Copying You** — the chorus is plausible; both verses need checking.
-4. **Camden** — refrain and place name are stable; verse details are not.
-5. **Torture** — chorus is stable; the final words of both verses need checking.
-6. **Common Bollocks** — title/chorus are stable; pencil-box verse needs a pass.
+The Russian text is a translation of the band-confirmed English, not a separate
+transcription and not an attempt to repair its deliberately odd English.
 
 ## Reproduce a machine draft
 

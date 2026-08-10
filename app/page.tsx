@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { festival } from "./festival";
 import { songs, type Song } from "./songs";
 
-type Language = "it" | "ru";
+type Language = "it" | "ru" | "en";
 type Theme = "archive" | "night" | "silly";
 
 const copy = {
   it: {
     languageLabel: "Scegli la lingua",
+    navigationLabel: "Navigazione principale",
     homeLabel: "C'mon, Bollo! — inizio",
     navConcert: "Concerto",
     navBollo: "Bollo",
@@ -18,25 +20,25 @@ const copy = {
     heroLine1: "SIAMO",
     heroLine2: "TORNATI.",
     heroNote:
-      "Nel 2010 suonavamo a Samara. Nel 2026 ci riproviamo. La cantante ha davvero il passaporto italiano; gli altri fanno del loro meglio.",
+      "Nel 2010 suonavamo a Samara. Il 16 agosto 2026 torniamo al bar Hvat. La cantante ha davvero il passaporto italiano; gli altri fanno del loro meglio.",
     heroAlt: "La pecora simbolo dei C'mon, Bollo!",
     heroStamp: "ITALIANI*",
     heroCredit: "PECORA N. 01 / ANCORA SENZA SPIEGAZIONE",
     footnote1: "* Una persona del gruppo.",
     footnote2: "Il concerto, però, è davvero a Samara.",
-    ticker: ["SAMARA", "2026", "REUNION", "DATA DA ANNUNCIARE"],
+    ticker: ["SAMARA", "16 AGOSTO 2026", "HVAT", "PORTE 18:00", "LIVE 18:30"],
     concertLabel: "Annuncio concerto",
-    concertIndex: "01 / IL RITORNO",
-    concertEyebrow: "Concerto di reunion",
-    concertLine1: "DI NUOVO.",
-    concertLine2: "DAL VIVO.",
+    concertIndex: "01 / IL CONCERTO VERO",
+    concertEyebrow: "что-то почувствовать фест · Samara",
+    concertLine1: "16 AGOSTO.",
+    concertLine2: "HVAT.",
     when: "Quando",
-    whenValue: "Autunno 2026",
+    whenValue: "16 agosto 2026 · porte 18:00",
     where: "Dove",
-    whereValue: "Samara · da annunciare",
-    status: "Stato",
-    statusValue: "Prove in corso",
-    notify: "Scrivimi quando c’è una data",
+    whereValue: "Hvat · Galaktionovskaja 40 · Samara",
+    status: "Il nostro set",
+    statusValue: "18:30–19:00 · apriamo il festival",
+    notify: "Pagina del festival",
     manifestoLabel: "Manifesto del gruppo",
     manifestoLine1: "QUINDICI ANNI DI PAUSA.",
     manifestoLine2: "BASTA.",
@@ -93,6 +95,7 @@ const copy = {
   },
   ru: {
     languageLabel: "Выберите язык",
+    navigationLabel: "Основная навигация",
     homeLabel: "C'mon, Bollo! — начало",
     navConcert: "Концерт",
     navBollo: "Болло",
@@ -102,25 +105,25 @@ const copy = {
     heroLine1: "МЫ",
     heroLine2: "ВЕРНУЛИСЬ.",
     heroNote:
-      "В 2010-м мы играли в Самаре. В 2026-м решили повторить. У вокалистки правда итальянский паспорт. Остальные просто хорошо держатся.",
+      "В 2010-м мы играли в Самаре. 16 августа 2026-го возвращаемся в бар «Хват». У вокалистки правда итальянский паспорт. Остальные просто хорошо держатся.",
     heroAlt: "Овца — символ группы C'mon, Bollo!",
     heroStamp: "ИТАЛЬЯНЦЫ*",
     heroCredit: "ОВЦА № 01 / ВСЁ ЕЩЁ БЕЗ ОБЪЯСНЕНИЙ",
     footnote1: "* Один человек из группы.",
     footnote2: "Концерт, впрочем, правда в Самаре.",
-    ticker: ["САМАРА", "2026", "РЕЮНИОН", "ДАТА СКОРО"],
+    ticker: ["САМАРА", "16 АВГУСТА 2026", "ХВАТ", "ДВЕРИ 18:00", "МЫ 18:30"],
     concertLabel: "Анонс концерта",
-    concertIndex: "01 / ВОЗВРАЩЕНИЕ",
-    concertEyebrow: "Реюнион-концерт",
-    concertLine1: "СНОВА.",
-    concertLine2: "ВЖИВУЮ.",
+    concertIndex: "01 / НАСТОЯЩИЙ КОНЦЕРТ",
+    concertEyebrow: "что-то почувствовать фест · Самара",
+    concertLine1: "16 АВГУСТА.",
+    concertLine2: "ХВАТ.",
     when: "Когда",
-    whenValue: "Осень 2026",
+    whenValue: "16 августа 2026 · двери 18:00",
     where: "Где",
-    whereValue: "Самара · скоро объявим",
-    status: "Статус",
-    statusValue: "Репетируем",
-    notify: "Напишите, когда будет дата",
+    whereValue: "Бар «Хват» · Галактионовская, 40 · Самара",
+    status: "Наш сет",
+    statusValue: "18:30–19:00 · открываем фестиваль",
+    notify: "Страница фестиваля",
     manifestoLabel: "Манифест группы",
     manifestoLine1: "ПЯТНАДЦАТЬ ЛЕТ ПЕРЕРЫВА.",
     manifestoLine2: "ХВАТИТ.",
@@ -175,6 +178,91 @@ const copy = {
     oldSiteLink: "Сайт 2011",
     articleLink: "Статья 2010",
   },
+  en: {
+    languageLabel: "Choose language",
+    navigationLabel: "Main navigation",
+    homeLabel: "C'mon, Bollo! — home",
+    navConcert: "Concert",
+    navBollo: "Bollo",
+    navStory: "Story",
+    navMerch: "Merch",
+    heroKicker: "Samara · power pop · reunion 2026",
+    heroLine1: "WE ARE",
+    heroLine2: "BACK.",
+    heroNote:
+      "We played in Samara in 2010. On 16 August 2026 we return at Hvat bar. The singer really does have an Italian passport; everyone else is doing their best.",
+    heroAlt: "The C'mon, Bollo! sheep mascot",
+    heroStamp: "ITALIANS*",
+    heroCredit: "SHEEP NO. 01 / STILL UNEXPLAINED",
+    footnote1: "* One person in the band.",
+    footnote2: "The concert, however, really is in Samara.",
+    ticker: ["SAMARA", "16 AUGUST 2026", "HVAT", "DOORS 18:00", "WE PLAY 18:30"],
+    concertLabel: "Concert announcement",
+    concertIndex: "01 / THE ACTUAL CONCERT",
+    concertEyebrow: "что-то почувствовать фест · Samara",
+    concertLine1: "16 AUGUST.",
+    concertLine2: "HVAT.",
+    when: "When",
+    whenValue: "16 August 2026 · doors 18:00",
+    where: "Where",
+    whereValue: "Hvat bar · Galaktionovskaya 40 · Samara",
+    status: "Our set",
+    statusValue: "18:30–19:00 · opening the festival",
+    notify: "Festival page",
+    manifestoLabel: "Band manifesto",
+    manifestoLine1: "FIFTEEN YEARS OFF.",
+    manifestoLine2: "ENOUGH.",
+    manifestoAccent: "WE PLAY.",
+    bolloIndex: "02 / THE REAL BOLLO",
+    bolloEyebrow: "Gorilla. Musician. No licence.",
+    bolloTitle: "BOLLO NO DRIVE.",
+    bolloLead: "Plays everything. Driving is another matter.",
+    bolloText:
+      "Bollo is the gorilla from The Mighty Boosh who loses his licence and gave us our name. The sheep has nothing to do with it. That is why it stayed.",
+    bolloAlt:
+      "Collage portrait of Bollo, a gorilla musician with a guitar and drumsticks",
+    bolloDossier: "DOSSIER NO. 01",
+    species: "Species",
+    speciesValue: "Gorilla",
+    role: "Role",
+    roleValue: "Every instrument",
+    license: "Licence",
+    licenseValue: "Lost",
+    storyIndex: "03 / WHAT HAPPENED",
+    storyEyebrow: "Samara · 2010–2026",
+    storyTitle: "IT WAS NOT MONTY PYTHON.",
+    storyLead:
+      "The name comes from The Mighty Boosh. Bollo loses his licence. We lose fifteen years.",
+    storyP1:
+      "In 2010 we play Snickers Urbania in Samara. Then we record songs, launch a Flash site and put an unexplained sheep on it. The Far, The Farther and The Beyond comes out in 2011. Then the band stops and life carries on.",
+    storyP2:
+      "Now we are getting back together for one concert. The singer really is an Italian citizen, so for one night we are an Italian band. Technically, that is enough.",
+    quote: "“C’mon, Bollo, get your monkey anus at the steering wheel.”",
+    quoteBy: "— Vince Noir, the official reason for the name",
+    oldSiteAlt:
+      "The original 2011 C'mon, Bollo! website with a sheep",
+    oldSiteCaption: "cmonbollo.com · 07.02.2011",
+    bandPhotoAlt: "Archive photograph of C'mon, Bollo! in 2010",
+    bandPhotoCaption: "“They sound the way they look” · Samara, 2010",
+    merchIndex: "04 / MERCH",
+    merchEyebrow: "Small concert run",
+    merchTitle: "SHIRTS. BAGS. SHEEP.",
+    merchIntro:
+      "We are making a few things for the concert. Whatever gets printed will exist.",
+    shirtName: "‘Together again’ T-shirt",
+    shirtDesc: "Black cotton · dirty ivory/red print",
+    toteName: "‘Bollo no drive’ tote",
+    toteDesc: "Natural canvas · Bollo still has no licence",
+    posterName: "‘Samara · 2026’ poster",
+    posterDesc: "A2 poster · Samara 2026",
+    soon: "SOON",
+    contactIndex: "05 / CONTACT",
+    contactEyebrow: "Concerts, press, old demos and lyric corrections",
+    contactTitle: "WRITE TO US.",
+    footerClaim: "C’MON, BOLLO! · SAMARA · TOGETHER AGAIN",
+    oldSiteLink: "2011 site",
+    articleLink: "2010 article",
+  },
 } as const;
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
@@ -192,6 +280,12 @@ const themeCopy = {
     night: "Ночь",
     silly: "Дичь",
   },
+  en: {
+    label: "Site style",
+    archive: "Archive",
+    night: "Night",
+    silly: "Nonsense",
+  },
 } as const;
 
 const musicCopy = {
@@ -201,13 +295,14 @@ const musicCopy = {
     eyebrow: "Sei canzoni · registrazioni originali",
     title: "SEI CANZONI. NESSUNA SCUSA.",
     intro:
-      "Questi sono i nostri vecchi MP3. I testi inglesi sono stati ricostruiti a orecchio: dove non siamo sicuri, lo diciamo.",
+      "Questi sono i nostri vecchi MP3. I testi inglesi sono stati confermati dal gruppo; la traduzione russa è stata aggiornata.",
     draftNote:
-      "Una macchina ha ascoltato le canzoni due volte. Non ha capito tutto. Onestamente, neanche noi.",
+      "Testi ricevuti dal gruppo il 9 agosto 2026. Stavolta sappiamo davvero cosa cantavamo.",
     lyrics: "Apri testo e traduzione",
-    english: "English · draft lyrics",
+    english: "English · testo confermato",
     russian: "Русский · перевод",
     draft: "BOZZA",
+    confirmed: "CONFERMATO",
     confidence: {
       high: "chiarezza alta",
       medium: "da verificare",
@@ -220,17 +315,38 @@ const musicCopy = {
     eyebrow: "Шесть песен · оригинальные записи",
     title: "ШЕСТЬ ПЕСЕН. НИКАКИХ ОПРАВДАНИЙ.",
     intro:
-      "Это наши старые MP3. Английские тексты сняты на слух: где не уверены, так и написано.",
+      "Это наши старые MP3. Английские тексты подтвердила группа; русский перевод мы переписали заново.",
     draftNote:
-      "Машина прослушала песни два раза. Поняла не всё. Мы, если честно, тоже.",
+      "Тексты получены от группы 9 августа 2026 года. Теперь мы правда знаем, что там пели.",
     lyrics: "Открыть текст и перевод",
-    english: "English · черновой текст",
+    english: "English · подтверждённый текст",
     russian: "Русский · перевод",
     draft: "ЧЕРНОВИК",
+    confirmed: "ПОДТВЕРЖДЕНО",
     confidence: {
       high: "высокая ясность",
       medium: "нужна проверка",
       low: "много сомнений",
+    },
+  },
+  en: {
+    nav: "Music",
+    index: "04 / FROM THE TAPE",
+    eyebrow: "Six songs · original recordings",
+    title: "SIX SONGS. NO EXCUSES.",
+    intro:
+      "These are our old MP3s. The band has confirmed the English lyrics; the Russian translation has been rewritten.",
+    draftNote:
+      "Lyrics received from the band on 9 August 2026. This time we really do know what we were singing.",
+    lyrics: "Open lyrics and translation",
+    english: "English · confirmed lyrics",
+    russian: "Русский · translation",
+    draft: "DRAFT",
+    confirmed: "CONFIRMED",
+    confidence: {
+      high: "high clarity",
+      medium: "needs checking",
+      low: "many doubtful words",
     },
   },
 } as const;
@@ -271,6 +387,23 @@ const sillyCopy = {
     live: "ВЖИВУЮ",
     dossier: "ЧИТАТЬ ДЕЛО",
     archiveCaption: "ВЕЩДОК",
+  },
+  en: {
+    issue: "Special edition · Samara 2026",
+    deck: "Three things to know before somebody pulls the plug",
+    gigTag: "CONCERT",
+    bolloTag: "THE STAFF",
+    storyTag: "INVESTIGATION",
+    evidenceTag: "PHYSICAL EVIDENCE",
+    evidenceTitle: "IT REALLY HAPPENED.",
+    evidenceIntro:
+      "A Flash site, an unexplained sheep and a photograph from 2010. The case is complete.",
+    songsTag: "SIX RECORDINGS",
+    merchTag: "ALMOST USEFUL OBJECTS",
+    contactTag: "END OF PAPER",
+    live: "LIVE",
+    dossier: "READ THE DOSSIER",
+    archiveCaption: "EXHIBIT",
   },
 } as const;
 
@@ -359,7 +492,7 @@ function SongCard({
       </audio>
 
       <div className="transcript-status">
-        <span>{labels.draft}</span>
+        <span>{song.status === "confirmed" ? labels.confirmed : labels.draft}</span>
         <span>{labels.confidence[song.confidence]}</span>
       </div>
 
@@ -427,8 +560,92 @@ function DisplaySwitches({
         >
           RU
         </button>
+        <span aria-hidden="true">/</span>
+        <button
+          type="button"
+          aria-pressed={language === "en"}
+          onClick={() => onLanguage("en")}
+        >
+          EN
+        </button>
       </div>
     </>
+  );
+}
+
+function FestivalPoster({ language }: { language: Language }) {
+  const f = festival.copy[language];
+
+  return (
+    <figure className="festival-poster">
+      <div className="festival-poster-art" aria-hidden="true">
+        <img src="/festival-illustration-2026.png" alt="" />
+      </div>
+      <figcaption>
+        <p className="festival-poster-name">{festival.name}</p>
+        <h3>{f.title}</h3>
+        <div className="festival-poster-facts">
+          <strong>
+            <time dateTime={festival.dateIso}>{f.date}</time> · {festival.city}
+          </strong>
+          <span>
+            {f.venueLabel}: {festival.venue} · {festival.address}
+          </span>
+          <span>
+            {f.doorsLabel}: <time dateTime="18:00">{festival.doors}</time>
+          </span>
+        </div>
+        <ol className="festival-poster-running-order">
+          {festival.lineup.map((band) => (
+            <li key={band.name}>
+              <time dateTime={band.setTime}>{band.setTime}</time>
+              <span>{band.name}</span>
+            </li>
+          ))}
+        </ol>
+      </figcaption>
+    </figure>
+  );
+}
+
+function FestivalLineup({ language }: { language: Language }) {
+  const f = festival.copy[language];
+
+  return (
+    <section className="festival-lineup" aria-labelledby={`lineup-title-${language}`}>
+      <header>
+        <p className="eyebrow">{f.kicker}</p>
+        <h3 id={`lineup-title-${language}`}>{f.lineupTitle}</h3>
+        <p>{f.lineupIntro}</p>
+      </header>
+      <ol>
+        {festival.lineup.map((band, index) => {
+          const external = band.profileUrl.startsWith("http");
+
+          return (
+            <li key={band.name}>
+              <span className="festival-band-number">0{index + 1}</span>
+              <div className="festival-band-copy">
+                <div>
+                  <h4>{band.name}</h4>
+                  <time dateTime={band.setTime}>
+                    {band.setTime}–{band.endTime}
+                  </time>
+                </div>
+                <p>{band.description[language]}</p>
+              </div>
+              <a
+                href={band.profileUrl}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer" : undefined}
+              >
+                {f.profileLink} <Arrow />
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
   );
 }
 
@@ -456,6 +673,7 @@ function SillySongCard({
         <p className="chaos-song-cue">{song.visualCue[language]}</p>
         <h3>{song.title}</h3>
         <div className="chaos-song-meta">
+          <span>{song.status === "confirmed" ? labels.confirmed : labels.draft}</span>
           <span>{song.duration}</span>
           <span>{labels.confidence[song.confidence]}</span>
         </div>
@@ -485,6 +703,7 @@ function SillySite({
   const t = copy[language];
   const music = musicCopy[language];
   const themes = themeCopy[language];
+  const f = festival.copy[language];
   const s: SillyCopy = sillyCopy[language];
 
   return (
@@ -493,7 +712,7 @@ function SillySite({
         <a className="chaos-logo" href="#chaos-top" aria-label={t.homeLabel}>
           C’MON, BOLLO!
         </a>
-        <nav aria-label={language === "it" ? "Navigazione principale" : "Основная навигация"}>
+        <nav aria-label={t.navigationLabel}>
           <a href="#concerto">{t.navConcert}</a>
           <a href="#bollo">{t.navBollo}</a>
           <a href="#musica">{music.nav}</a>
@@ -546,22 +765,20 @@ function SillySite({
               <span className="chaos-label">{s.gigTag}</span>
             </div>
             <div className="chaos-card-copy">
-              <p>{t.whenValue}</p>
-              <h3>
-                {t.concertLine1} {t.concertLine2}
-              </h3>
+              <p>{f.date} · {f.doorsLabel} {festival.doors}</p>
+              <h3>{f.title}</h3>
               <dl>
                 <div>
-                  <dt>{t.where}</dt>
-                  <dd>{t.whereValue}</dd>
+                  <dt>{f.venueLabel}</dt>
+                  <dd>{festival.venue} · {festival.address}</dd>
                 </div>
                 <div>
-                  <dt>{t.status}</dt>
-                  <dd>{t.statusValue}</dd>
+                  <dt>{f.setLabel}</dt>
+                  <dd>18:30–19:00</dd>
                 </div>
               </dl>
-              <a href="mailto:cmonbollo@gmail.com?subject=C%E2%80%99mon%2C%20Bollo!%20%E2%80%94%20Samara%202026">
-                {t.notify} <Arrow />
+              <a href={festival.eventUrl} target="_blank" rel="noreferrer">
+                {f.eventLink} <Arrow />
               </a>
             </div>
           </article>
@@ -602,6 +819,11 @@ function SillySite({
             </div>
           </article>
         </div>
+      </section>
+
+      <section className="chaos-festival" aria-label={f.posterAlt}>
+        <FestivalPoster language={language} />
+        <FestivalLineup language={language} />
       </section>
 
       <section className="chaos-interruption" aria-label={t.manifestoLabel}>
@@ -724,10 +946,13 @@ export default function Home() {
   const t = copy[language];
   const music = musicCopy[language];
   const themes = themeCopy[language];
+  const f = festival.copy[language];
 
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-language");
-    if (saved === "ru" || saved === "it") {
+    if (saved === "ru" || saved === "it" || saved === "en") {
+      // Restore the client-only preference after hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLanguage(saved);
     }
   }, []);
@@ -740,6 +965,8 @@ export default function Home() {
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-theme");
     if (saved === "archive" || saved === "night" || saved === "silly") {
+      // Restore the client-only preference after hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(saved);
     }
   }, []);
@@ -748,6 +975,20 @@ export default function Home() {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("cmon-bollo-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const stopOtherTracks = (event: Event) => {
+      const currentTrack = event.target;
+      if (!(currentTrack instanceof HTMLAudioElement)) return;
+
+      document.querySelectorAll<HTMLAudioElement>("audio").forEach((track) => {
+        if (track !== currentTrack) track.pause();
+      });
+    };
+
+    document.addEventListener("play", stopOtherTracks, true);
+    return () => document.removeEventListener("play", stopOtherTracks, true);
+  }, []);
 
   if (theme === "silly") {
     return (
@@ -766,7 +1007,7 @@ export default function Home() {
         <a className="wordmark" href="#top" aria-label={t.homeLabel}>
           C’MON, BOLLO!
         </a>
-        <nav aria-label={language === "it" ? "Navigazione principale" : "Основная навигация"}>
+        <nav aria-label={t.navigationLabel}>
           <a href="#concerto">{t.navConcert}</a>
           <a href="#bollo">{t.navBollo}</a>
           <a href="#storia">{t.navStory}</a>
@@ -813,9 +1054,17 @@ export default function Home() {
             >
               RU
             </button>
+            <span aria-hidden="true">/</span>
+            <button
+              type="button"
+              aria-pressed={language === "en"}
+              onClick={() => setLanguage("en")}
+            >
+              EN
+            </button>
           </div>
-          <a className="header-cta" href="#contatto">
-            SAMARA 2026 <Arrow />
+          <a className="header-cta" href="#concerto">
+            16.08 · HVAT <Arrow />
           </a>
         </div>
       </header>
@@ -849,7 +1098,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="concert section-shell" id="concerto" aria-labelledby="concert-title">
+      <section
+        className="concert festival-concert section-shell"
+        id="concerto"
+        aria-labelledby="concert-title"
+      >
         <div className="section-index">{t.concertIndex}</div>
         <div className="concert-main">
           <p className="eyebrow">{t.concertEyebrow}</p>
@@ -859,29 +1112,33 @@ export default function Home() {
             {t.concertLine2}
           </h2>
         </div>
-        <div className="ticket">
-          <div className="ticket-top">
-            <span>C’MON, BOLLO!</span>
-            <span>LIVE</span>
+        <FestivalPoster language={language} />
+        <div className="festival-details">
+          <div className="ticket">
+            <div className="ticket-top">
+              <span>C’MON, BOLLO!</span>
+              <span>LIVE</span>
+            </div>
+            <div className="ticket-city">САМАРА</div>
+            <dl>
+              <div>
+                <dt>{t.when}</dt>
+                <dd>{t.whenValue}</dd>
+              </div>
+              <div>
+                <dt>{t.where}</dt>
+                <dd>{t.whereValue}</dd>
+              </div>
+              <div>
+                <dt>{t.status}</dt>
+                <dd>{t.statusValue}</dd>
+              </div>
+            </dl>
+            <a href={festival.eventUrl} target="_blank" rel="noreferrer">
+              {f.eventLink} <Arrow />
+            </a>
           </div>
-          <div className="ticket-city">САМАРА</div>
-          <dl>
-            <div>
-              <dt>{t.when}</dt>
-              <dd>{t.whenValue}</dd>
-            </div>
-            <div>
-              <dt>{t.where}</dt>
-              <dd>{t.whereValue}</dd>
-            </div>
-            <div>
-              <dt>{t.status}</dt>
-              <dd>{t.statusValue}</dd>
-            </div>
-          </dl>
-          <a href="mailto:cmonbollo@gmail.com?subject=C%E2%80%99mon%2C%20Bollo!%20%E2%80%94%20Samara%202026">
-            {t.notify} <Arrow />
-          </a>
+          <FestivalLineup language={language} />
         </div>
       </section>
 
