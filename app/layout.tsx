@@ -10,8 +10,8 @@ export const metadata: Metadata = {
     title: "C'mon, Bollo! — 16 agosto 2026 · Hvat · Samara",
     description: "Что-то почувствовать фест · porte 18:00 · C'mon, Bollo! 18:30.",
     type: "website",
-    locale: "it_IT",
-    alternateLocale: ["ru_RU", "en_GB"],
+    locale: "ru_RU",
+    alternateLocale: ["it_IT", "en_GB"],
     images: [
       {
         url: "/character-atlas.png",
@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it">
+    <html lang="ru" data-theme="silly">
       <body>{children}</body>
     </html>
   );
