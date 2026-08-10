@@ -8,6 +8,10 @@ The site has Italian, Russian, and English UI, includes the reconstructed band
 archive, Bollo and sheep lore, concert information, merch concepts, and six
 original recordings with band-confirmed English lyrics and Russian translations.
 
+The confirmed reunion show is **16 August 2026** at **Hvat**,
+Galaktionovskaya 40, Samara. Doors are at 18:00; C'mon, Bollo! play
+18:30–19:00 as part of Что-то почувствовать фест.
+
 ## Start locally
 
 Requirements:
@@ -33,12 +37,14 @@ The build output is written to `dist/`.
 ## Where things live
 
 - `app/page.tsx` — page structure, trilingual UI copy, interactions
+- `app/festival.ts` — confirmed festival facts, public running order, and trilingual band notes
 - `app/songs.ts` — track metadata, English lyrics, Russian translations
 - `app/globals.css` — the complete visual system and responsive layout
 - `app/layout.tsx` — metadata for cmonbollo.com and social previews
 - `public/audio/` — the six original MP3 recordings
 - `public/archive/` — images recovered from the old site and press archive
 - `public/fonts/` — self-hosted Cyrillic/Latin display font
+- `public/festival-illustration-2026.png` — original festival illustration used by the HTML poster
 - `scripts/transcribe_audio.py` — repeatable local draft-transcription helper
 - `scripts/requirements-transcription.txt` — optional transcription dependencies
 - `docs/AI-HANDOFF.md` — project context and a safe continuation checklist

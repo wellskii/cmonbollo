@@ -465,6 +465,220 @@ footer a:hover {
   background: var(--red);
 }
 
+.festival-concert {
+  grid-template-columns: 8% minmax(300px, 0.86fr) minmax(440px, 1.3fr);
+  gap: 0 3vw;
+  min-height: 0;
+  padding-bottom: 8vw;
+}
+
+.festival-concert > .section-index {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.festival-concert > .concert-main {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  margin-bottom: clamp(42px, 5vw, 82px);
+  padding-right: 0;
+}
+
+.festival-concert > .festival-poster {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.festival-details {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.festival-poster {
+  margin: 0;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  background: var(--ink);
+  box-shadow: 13px 13px 0 var(--red);
+  transform: rotate(-0.7deg);
+}
+
+.festival-poster-art {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-bottom: 3px solid var(--ink);
+  background: #f59bce;
+}
+
+.festival-poster-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.festival-poster figcaption {
+  padding: clamp(22px, 3vw, 40px);
+  background: var(--ink);
+  color: var(--paper-bright);
+}
+
+.festival-poster-name {
+  margin: 0 0 18px;
+  color: var(--coral);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.festival-poster h3 {
+  margin: 0;
+  color: var(--paper-bright);
+  font-family: var(--font-brush);
+  font-size: clamp(48px, 5.6vw, 86px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.86;
+}
+
+.festival-poster-facts {
+  display: grid;
+  gap: 6px;
+  margin: 24px 0;
+  padding: 17px 0;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.festival-poster-facts strong {
+  color: #f6e688;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.festival-poster-running-order {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.festival-poster-running-order li {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 12px;
+  align-items: baseline;
+  font-weight: 900;
+}
+
+.festival-poster-running-order time {
+  color: var(--coral);
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+}
+
+.festival-poster-running-order span {
+  font-size: clamp(15px, 1.4vw, 20px);
+}
+
+.festival-details > .ticket {
+  width: min(100%, 760px);
+  margin: 0 0 56px;
+}
+
+.festival-lineup > header {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.festival-lineup > header h3 {
+  max-width: 780px;
+  margin: 10px 0 16px;
+  font-family: var(--font-brush);
+  font-size: clamp(42px, 4.2vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+}
+
+.festival-lineup > header > p:last-child {
+  max-width: 640px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.festival-lineup > ol {
+  margin: 0;
+  padding: 0;
+  border-bottom: 2px solid var(--ink);
+  list-style: none;
+}
+
+.festival-lineup > ol > li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: start;
+  padding: 22px 0;
+  border-top: 2px solid var(--ink);
+}
+
+.festival-band-number {
+  padding-top: 4px;
+  color: var(--red);
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.festival-band-copy > div {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.festival-band-copy h4 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 2vw, 31px);
+  line-height: 1;
+}
+
+.festival-band-copy time {
+  flex: 0 0 auto;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.festival-band-copy p {
+  max-width: 650px;
+  margin: 9px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.festival-lineup li > a {
+  margin-top: 2px;
+  padding: 7px 9px;
+  border: 1px solid currentColor;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.festival-lineup li > a:hover {
+  background: var(--ink);
+  color: var(--paper-bright);
+}
+
 .manifesto {
   padding-top: 7vw;
   padding-bottom: 7vw;
@@ -1394,6 +1608,16 @@ html[data-theme="night"] .ticket::after {
   background: #050505;
 }
 
+html[data-theme="night"] .festival-lineup > ol,
+html[data-theme="night"] .festival-lineup > ol > li {
+  border-color: #f8f6ef;
+}
+
+html[data-theme="night"] .festival-lineup li > a:hover {
+  background: var(--coral);
+  color: #050505;
+}
+
 html[data-theme="night"] .manifesto {
   position: relative;
   overflow: hidden;
@@ -1542,6 +1766,28 @@ html[data-theme="night"] footer {
 
   .ticket {
     grid-column: 2;
+  }
+
+  .festival-concert > .section-index {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+
+  .festival-concert > .concert-main {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .festival-concert > .festival-poster {
+    grid-column: 2;
+    grid-row: 2;
+    width: min(100%, 620px);
+    margin-bottom: 74px;
+  }
+
+  .festival-details {
+    grid-column: 2;
+    grid-row: 3;
   }
 
   .story {
@@ -1755,6 +2001,43 @@ html[data-theme="night"] footer {
 
   .ticket-city {
     font-size: 26vw;
+  }
+
+  .festival-concert > .section-index,
+  .festival-concert > .concert-main,
+  .festival-concert > .festival-poster,
+  .festival-details {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .festival-concert > .festival-poster {
+    width: auto;
+    margin: 0 7px 64px 0;
+    box-shadow: 8px 8px 0 var(--red);
+  }
+
+  .festival-details > .ticket {
+    margin-bottom: 64px;
+  }
+
+  .festival-lineup > ol > li {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .festival-band-copy > div {
+    display: block;
+  }
+
+  .festival-band-copy time {
+    display: block;
+    margin-top: 7px;
+  }
+
+  .festival-lineup li > a {
+    grid-column: 2;
+    width: fit-content;
   }
 
   .manifesto {
@@ -2245,6 +2528,75 @@ html[data-theme="silly"] .chaos-card-copy > a {
   text-transform: uppercase;
 }
 
+html[data-theme="silly"] .chaos-festival {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.8fr) minmax(440px, 1.2fr);
+  gap: clamp(30px, 5vw, 78px);
+  align-items: start;
+  margin: 92px 0 76px;
+  padding: clamp(28px, 5vw, 76px);
+  border: 4px solid var(--chaos-black);
+  border-radius: 28px 14px 31px 12px;
+  background:
+    radial-gradient(circle at 12% 18%, var(--chaos-butter) 0 5%, transparent 5.2%),
+    repeating-radial-gradient(ellipse at 85% 20%, var(--chaos-pink) 0 18px, var(--chaos-lilac) 19px 40px);
+  box-shadow: 11px 11px 0 var(--chaos-black);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-poster {
+  border: 4px solid var(--chaos-black);
+  border-radius: 22px 12px 25px 10px;
+  box-shadow: 10px 10px 0 var(--chaos-black);
+  transform: rotate(-1.2deg);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-poster figcaption {
+  background: var(--chaos-black);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-poster-name,
+html[data-theme="silly"] .chaos-festival .festival-poster-running-order time {
+  color: var(--chaos-coral);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-lineup {
+  padding: clamp(28px, 4vw, 58px);
+  border: 4px solid var(--chaos-black);
+  border-radius: 17px 26px 12px 23px;
+  background: var(--chaos-white);
+  color: var(--chaos-black);
+  box-shadow: 9px 9px 0 var(--chaos-black);
+  transform: rotate(0.5deg);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-lineup .eyebrow {
+  width: fit-content;
+  padding: 8px 10px;
+  border: 3px solid var(--chaos-black);
+  background: var(--chaos-butter);
+  box-shadow: 4px 4px 0 var(--chaos-black);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-lineup > header h3 {
+  margin-top: 28px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+
+html[data-theme="silly"] .chaos-festival .festival-lineup > ol,
+html[data-theme="silly"] .chaos-festival .festival-lineup > ol > li {
+  border-color: var(--chaos-black);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-band-number {
+  color: var(--chaos-pink);
+}
+
+html[data-theme="silly"] .chaos-festival .festival-lineup li > a:hover {
+  background: var(--chaos-pink);
+  color: var(--chaos-black);
+}
+
 html[data-theme="silly"] .chaos-interruption {
   display: grid;
   grid-template-columns: 34% 66%;
@@ -2718,6 +3070,15 @@ html[data-theme="silly"] .chaos-footer p:last-child {
   html[data-theme="silly"] .chaos-card-copy {
     min-height: 410px;
   }
+
+  html[data-theme="silly"] .chaos-festival {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-theme="silly"] .chaos-festival .festival-poster {
+    width: min(100%, 640px);
+    justify-self: center;
+  }
 }
 
 @media (max-width: 760px) {
@@ -2815,6 +3176,19 @@ html[data-theme="silly"] .chaos-footer p:last-child {
 
   html[data-theme="silly"] .chaos-card-copy {
     min-height: 0;
+  }
+
+  html[data-theme="silly"] .chaos-festival {
+    gap: 42px;
+    margin: 56px 0 44px;
+    padding: 18px;
+    box-shadow: 6px 6px 0 var(--chaos-black);
+  }
+
+  html[data-theme="silly"] .chaos-festival .festival-lineup {
+    padding: 27px 20px;
+    box-shadow: 6px 6px 0 var(--chaos-black);
+    transform: none;
   }
 
   html[data-theme="silly"] .chaos-interruption {

@@ -3,26 +3,26 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cmonbollo.com"),
-  title: "C'mon, Bollo! — reunion a Samara / реюнион в Самаре",
+  title: "C'mon, Bollo! — 16 августа 2026 · Хват · Самара",
   description:
-    "C'mon, Bollo! return to Samara: reunion concert, old songs, archive chaos, Bollo and the unexplained sheep.",
+    "C'mon, Bollo! открывают «Что-то почувствовать фест» 16 августа 2026 года в баре «Хват», Самара. Двери в 18:00, наш сет в 18:30.",
   openGraph: {
-    title: "C'mon, Bollo! — di nuovo dal vivo",
-    description: "Samara · 2026 · reunion, vecchi MP3 e una pecora.",
+    title: "C'mon, Bollo! — 16 agosto 2026 · Hvat · Samara",
+    description: "Что-то почувствовать фест · porte 18:00 · C'mon, Bollo! 18:30.",
     type: "website",
     locale: "it_IT",
     alternateLocale: ["ru_RU", "en_GB"],
     images: [
       {
         url: "/character-atlas.png",
-        alt: "C'mon, Bollo! — reunion a Samara nel 2026",
+        alt: "C'mon, Bollo! — Что-то почувствовать фест, Самара, 16 августа 2026",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "C'mon, Bollo! — di nuovo dal vivo",
-    description: "Samara · 2026 · reunion, vecchi MP3 e una pecora.",
+    title: "C'mon, Bollo! — 16 agosto 2026 · Hvat · Samara",
+    description: "Что-то почувствовать фест · двери 18:00 · C'mon, Bollo! 18:30.",
     images: ["/character-atlas.png"],
   },
 };

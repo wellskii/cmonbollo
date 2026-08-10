@@ -11,8 +11,9 @@ The immediate public story is:
 2. an old Flash-era site at cmonbollo.com featured a sheep;
 3. the name is a reference to Bollo from *The Mighty Boosh*, not Monty Python;
 4. the vocalist genuinely has Italian citizenship;
-5. a reunion concert in Samara is planned for 2026, with date and venue still
-   to be announced.
+5. the reunion concert is part of Что-то почувствовать фест on 16 August 2026
+   at Hvat, Galaktionovskaya 40, Samara; doors are 18:00 and the band's set is
+   18:30–19:00.
 
 ## Current implementation
 
@@ -21,6 +22,11 @@ is stored in localStorage under `cmon-bollo-language`. Italian is the first-visi
 always shown as a band-confirmed English original and a Russian translation,
 regardless of UI language. Starting a track pauses any other track that is
 already playing.
+
+Confirmed concert data and the public five-band running order live in
+`app/festival.ts`. Keep these facts typed and shared by all three site designs.
+The generated festival artwork is deliberately cropped to its illustration;
+all event text is rendered as accessible HTML so spelling and times stay exact.
 
 The visual system combines:
 
@@ -42,7 +48,9 @@ Visitors can switch between three saved visual modes:
 
 ## Important limitations
 
-- The reunion date, venue, ticket URL, and merch availability are placeholders.
+- Ticket price, age restriction, and merch availability are not yet confirmed.
+- The festival page URL currently points to the organiser's VK page; replace it
+  only when the organiser supplies a canonical ticket URL.
 - The custom domain has been purchased but still requires DNS/hosting
   configuration outside this repository.
 - The email address in the site is `cmonbollo@gmail.com`; confirm it before a
@@ -50,7 +58,7 @@ Visitors can switch between three saved visual modes:
 
 ## Safe next tasks
 
-1. Add the final concert date, venue, ticket URL, and contact preference.
+1. Add ticket price and age restriction only after the organiser confirms them.
 2. Connect cmonbollo.com to the chosen deployment and verify HTTPS.
 3. Test the page on a narrow phone and a desktop browser when visual QA is
    explicitly requested.

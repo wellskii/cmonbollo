@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { festival } from "./festival";
 import { songs, type Song } from "./songs";
 
 type Language = "it" | "ru" | "en";
@@ -19,25 +20,25 @@ const copy = {
     heroLine1: "SIAMO",
     heroLine2: "TORNATI.",
     heroNote:
-      "Nel 2010 suonavamo a Samara. Nel 2026 ci riproviamo. La cantante ha davvero il passaporto italiano; gli altri fanno del loro meglio.",
+      "Nel 2010 suonavamo a Samara. Il 16 agosto 2026 torniamo al bar Hvat. La cantante ha davvero il passaporto italiano; gli altri fanno del loro meglio.",
     heroAlt: "La pecora simbolo dei C'mon, Bollo!",
     heroStamp: "ITALIANI*",
     heroCredit: "PECORA N. 01 / ANCORA SENZA SPIEGAZIONE",
     footnote1: "* Una persona del gruppo.",
     footnote2: "Il concerto, però, è davvero a Samara.",
-    ticker: ["SAMARA", "2026", "REUNION", "DATA DA ANNUNCIARE"],
+    ticker: ["SAMARA", "16 AGOSTO 2026", "HVAT", "PORTE 18:00", "LIVE 18:30"],
     concertLabel: "Annuncio concerto",
-    concertIndex: "01 / IL RITORNO",
-    concertEyebrow: "Concerto di reunion",
-    concertLine1: "DI NUOVO.",
-    concertLine2: "DAL VIVO.",
+    concertIndex: "01 / IL CONCERTO VERO",
+    concertEyebrow: "что-то почувствовать фест · Samara",
+    concertLine1: "16 AGOSTO.",
+    concertLine2: "HVAT.",
     when: "Quando",
-    whenValue: "Autunno 2026",
+    whenValue: "16 agosto 2026 · porte 18:00",
     where: "Dove",
-    whereValue: "Samara · da annunciare",
-    status: "Stato",
-    statusValue: "Prove in corso",
-    notify: "Scrivimi quando c’è una data",
+    whereValue: "Hvat · Galaktionovskaja 40 · Samara",
+    status: "Il nostro set",
+    statusValue: "18:30–19:00 · apriamo il festival",
+    notify: "Pagina del festival",
     manifestoLabel: "Manifesto del gruppo",
     manifestoLine1: "QUINDICI ANNI DI PAUSA.",
     manifestoLine2: "BASTA.",
@@ -104,25 +105,25 @@ const copy = {
     heroLine1: "МЫ",
     heroLine2: "ВЕРНУЛИСЬ.",
     heroNote:
-      "В 2010-м мы играли в Самаре. В 2026-м решили повторить. У вокалистки правда итальянский паспорт. Остальные просто хорошо держатся.",
+      "В 2010-м мы играли в Самаре. 16 августа 2026-го возвращаемся в бар «Хват». У вокалистки правда итальянский паспорт. Остальные просто хорошо держатся.",
     heroAlt: "Овца — символ группы C'mon, Bollo!",
     heroStamp: "ИТАЛЬЯНЦЫ*",
     heroCredit: "ОВЦА № 01 / ВСЁ ЕЩЁ БЕЗ ОБЪЯСНЕНИЙ",
     footnote1: "* Один человек из группы.",
     footnote2: "Концерт, впрочем, правда в Самаре.",
-    ticker: ["САМАРА", "2026", "РЕЮНИОН", "ДАТА СКОРО"],
+    ticker: ["САМАРА", "16 АВГУСТА 2026", "ХВАТ", "ДВЕРИ 18:00", "МЫ 18:30"],
     concertLabel: "Анонс концерта",
-    concertIndex: "01 / ВОЗВРАЩЕНИЕ",
-    concertEyebrow: "Реюнион-концерт",
-    concertLine1: "СНОВА.",
-    concertLine2: "ВЖИВУЮ.",
+    concertIndex: "01 / НАСТОЯЩИЙ КОНЦЕРТ",
+    concertEyebrow: "что-то почувствовать фест · Самара",
+    concertLine1: "16 АВГУСТА.",
+    concertLine2: "ХВАТ.",
     when: "Когда",
-    whenValue: "Осень 2026",
+    whenValue: "16 августа 2026 · двери 18:00",
     where: "Где",
-    whereValue: "Самара · скоро объявим",
-    status: "Статус",
-    statusValue: "Репетируем",
-    notify: "Напишите, когда будет дата",
+    whereValue: "Бар «Хват» · Галактионовская, 40 · Самара",
+    status: "Наш сет",
+    statusValue: "18:30–19:00 · открываем фестиваль",
+    notify: "Страница фестиваля",
     manifestoLabel: "Манифест группы",
     manifestoLine1: "ПЯТНАДЦАТЬ ЛЕТ ПЕРЕРЫВА.",
     manifestoLine2: "ХВАТИТ.",
@@ -189,25 +190,25 @@ const copy = {
     heroLine1: "WE ARE",
     heroLine2: "BACK.",
     heroNote:
-      "We played in Samara in 2010. In 2026 we are trying it again. The singer really does have an Italian passport; everyone else is doing their best.",
+      "We played in Samara in 2010. On 16 August 2026 we return at Hvat bar. The singer really does have an Italian passport; everyone else is doing their best.",
     heroAlt: "The C'mon, Bollo! sheep mascot",
     heroStamp: "ITALIANS*",
     heroCredit: "SHEEP NO. 01 / STILL UNEXPLAINED",
     footnote1: "* One person in the band.",
     footnote2: "The concert, however, really is in Samara.",
-    ticker: ["SAMARA", "2026", "REUNION", "DATE TO BE ANNOUNCED"],
+    ticker: ["SAMARA", "16 AUGUST 2026", "HVAT", "DOORS 18:00", "WE PLAY 18:30"],
     concertLabel: "Concert announcement",
-    concertIndex: "01 / THE RETURN",
-    concertEyebrow: "Reunion concert",
-    concertLine1: "BACK.",
-    concertLine2: "LIVE.",
+    concertIndex: "01 / THE ACTUAL CONCERT",
+    concertEyebrow: "что-то почувствовать фест · Samara",
+    concertLine1: "16 AUGUST.",
+    concertLine2: "HVAT.",
     when: "When",
-    whenValue: "Autumn 2026",
+    whenValue: "16 August 2026 · doors 18:00",
     where: "Where",
-    whereValue: "Samara · to be announced",
-    status: "Status",
-    statusValue: "Rehearsing",
-    notify: "Tell me when there is a date",
+    whereValue: "Hvat bar · Galaktionovskaya 40 · Samara",
+    status: "Our set",
+    statusValue: "18:30–19:00 · opening the festival",
+    notify: "Festival page",
     manifestoLabel: "Band manifesto",
     manifestoLine1: "FIFTEEN YEARS OFF.",
     manifestoLine2: "ENOUGH.",
@@ -572,6 +573,82 @@ function DisplaySwitches({
   );
 }
 
+function FestivalPoster({ language }: { language: Language }) {
+  const f = festival.copy[language];
+
+  return (
+    <figure className="festival-poster">
+      <div className="festival-poster-art" aria-hidden="true">
+        <img src="/festival-illustration-2026.png" alt="" />
+      </div>
+      <figcaption>
+        <p className="festival-poster-name">{festival.name}</p>
+        <h3>{f.title}</h3>
+        <div className="festival-poster-facts">
+          <strong>
+            <time dateTime={festival.dateIso}>{f.date}</time> · {festival.city}
+          </strong>
+          <span>
+            {f.venueLabel}: {festival.venue} · {festival.address}
+          </span>
+          <span>
+            {f.doorsLabel}: <time dateTime="18:00">{festival.doors}</time>
+          </span>
+        </div>
+        <ol className="festival-poster-running-order">
+          {festival.lineup.map((band) => (
+            <li key={band.name}>
+              <time dateTime={band.setTime}>{band.setTime}</time>
+              <span>{band.name}</span>
+            </li>
+          ))}
+        </ol>
+      </figcaption>
+    </figure>
+  );
+}
+
+function FestivalLineup({ language }: { language: Language }) {
+  const f = festival.copy[language];
+
+  return (
+    <section className="festival-lineup" aria-labelledby={`lineup-title-${language}`}>
+      <header>
+        <p className="eyebrow">{f.kicker}</p>
+        <h3 id={`lineup-title-${language}`}>{f.lineupTitle}</h3>
+        <p>{f.lineupIntro}</p>
+      </header>
+      <ol>
+        {festival.lineup.map((band, index) => {
+          const external = band.profileUrl.startsWith("http");
+
+          return (
+            <li key={band.name}>
+              <span className="festival-band-number">0{index + 1}</span>
+              <div className="festival-band-copy">
+                <div>
+                  <h4>{band.name}</h4>
+                  <time dateTime={band.setTime}>
+                    {band.setTime}–{band.endTime}
+                  </time>
+                </div>
+                <p>{band.description[language]}</p>
+              </div>
+              <a
+                href={band.profileUrl}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noreferrer" : undefined}
+              >
+                {f.profileLink} <Arrow />
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+}
+
 function SillySongCard({
   song,
   labels,
@@ -626,6 +703,7 @@ function SillySite({
   const t = copy[language];
   const music = musicCopy[language];
   const themes = themeCopy[language];
+  const f = festival.copy[language];
   const s: SillyCopy = sillyCopy[language];
 
   return (
@@ -687,22 +765,20 @@ function SillySite({
               <span className="chaos-label">{s.gigTag}</span>
             </div>
             <div className="chaos-card-copy">
-              <p>{t.whenValue}</p>
-              <h3>
-                {t.concertLine1} {t.concertLine2}
-              </h3>
+              <p>{f.date} · {f.doorsLabel} {festival.doors}</p>
+              <h3>{f.title}</h3>
               <dl>
                 <div>
-                  <dt>{t.where}</dt>
-                  <dd>{t.whereValue}</dd>
+                  <dt>{f.venueLabel}</dt>
+                  <dd>{festival.venue} · {festival.address}</dd>
                 </div>
                 <div>
-                  <dt>{t.status}</dt>
-                  <dd>{t.statusValue}</dd>
+                  <dt>{f.setLabel}</dt>
+                  <dd>18:30–19:00</dd>
                 </div>
               </dl>
-              <a href="mailto:cmonbollo@gmail.com?subject=C%E2%80%99mon%2C%20Bollo!%20%E2%80%94%20Samara%202026">
-                {t.notify} <Arrow />
+              <a href={festival.eventUrl} target="_blank" rel="noreferrer">
+                {f.eventLink} <Arrow />
               </a>
             </div>
           </article>
@@ -743,6 +819,11 @@ function SillySite({
             </div>
           </article>
         </div>
+      </section>
+
+      <section className="chaos-festival" aria-label={f.posterAlt}>
+        <FestivalPoster language={language} />
+        <FestivalLineup language={language} />
       </section>
 
       <section className="chaos-interruption" aria-label={t.manifestoLabel}>
@@ -865,6 +946,7 @@ export default function Home() {
   const t = copy[language];
   const music = musicCopy[language];
   const themes = themeCopy[language];
+  const f = festival.copy[language];
 
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-language");
@@ -981,8 +1063,8 @@ export default function Home() {
               EN
             </button>
           </div>
-          <a className="header-cta" href="#contatto">
-            SAMARA 2026 <Arrow />
+          <a className="header-cta" href="#concerto">
+            16.08 · HVAT <Arrow />
           </a>
         </div>
       </header>
@@ -1016,7 +1098,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="concert section-shell" id="concerto" aria-labelledby="concert-title">
+      <section
+        className="concert festival-concert section-shell"
+        id="concerto"
+        aria-labelledby="concert-title"
+      >
         <div className="section-index">{t.concertIndex}</div>
         <div className="concert-main">
           <p className="eyebrow">{t.concertEyebrow}</p>
@@ -1026,29 +1112,33 @@ export default function Home() {
             {t.concertLine2}
           </h2>
         </div>
-        <div className="ticket">
-          <div className="ticket-top">
-            <span>C’MON, BOLLO!</span>
-            <span>LIVE</span>
+        <FestivalPoster language={language} />
+        <div className="festival-details">
+          <div className="ticket">
+            <div className="ticket-top">
+              <span>C’MON, BOLLO!</span>
+              <span>LIVE</span>
+            </div>
+            <div className="ticket-city">САМАРА</div>
+            <dl>
+              <div>
+                <dt>{t.when}</dt>
+                <dd>{t.whenValue}</dd>
+              </div>
+              <div>
+                <dt>{t.where}</dt>
+                <dd>{t.whereValue}</dd>
+              </div>
+              <div>
+                <dt>{t.status}</dt>
+                <dd>{t.statusValue}</dd>
+              </div>
+            </dl>
+            <a href={festival.eventUrl} target="_blank" rel="noreferrer">
+              {f.eventLink} <Arrow />
+            </a>
           </div>
-          <div className="ticket-city">САМАРА</div>
-          <dl>
-            <div>
-              <dt>{t.when}</dt>
-              <dd>{t.whenValue}</dd>
-            </div>
-            <div>
-              <dt>{t.where}</dt>
-              <dd>{t.whereValue}</dd>
-            </div>
-            <div>
-              <dt>{t.status}</dt>
-              <dd>{t.statusValue}</dd>
-            </div>
-          </dl>
-          <a href="mailto:cmonbollo@gmail.com?subject=C%E2%80%99mon%2C%20Bollo!%20%E2%80%94%20Samara%202026">
-            {t.notify} <Arrow />
-          </a>
+          <FestivalLineup language={language} />
         </div>
       </section>
 
