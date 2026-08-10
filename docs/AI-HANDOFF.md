@@ -18,7 +18,7 @@ The immediate public story is:
 ## Current implementation
 
 The site is a single responsive page. Italian, Russian, and English UI language
-is stored in localStorage under `cmon-bollo-language`. Italian is the first-visit default. Song lyrics are
+is stored in localStorage under `cmon-bollo-language`. Russian is the first-visit default, with the silly visual mode selected initially. Song lyrics are
 always shown as a band-confirmed English original and a Russian translation,
 regardless of UI language. Starting a track pauses any other track that is
 already playing.

@@ -29,7 +29,7 @@ test("server-renders the confirmed reunion concert", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /16 agosto 2026/);
+  assert.match(html, /16 августа 2026/);
   assert.match(html, /Галактионовская, 40/);
   assert.match(html, /festival-illustration-2026\.png/);
   assert.match(html, /https:\/\/vk\.ru\/justtofeelsomethingfest63/);

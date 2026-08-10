@@ -941,8 +941,8 @@ function SillySite({
 }
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>("it");
-  const [theme, setTheme] = useState<Theme>("archive");
+  const [language, setLanguage] = useState<Language>("ru");
+  const [theme, setTheme] = useState<Theme>("silly");
   const t = copy[language];
   const music = musicCopy[language];
   const themes = themeCopy[language];
