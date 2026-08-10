@@ -19,7 +19,7 @@ base. The repository itself cannot complete DNS ownership changes.
 4. Add `www` and configure it to redirect to the apex domain.
 5. Wait for certificate issuance, then verify both HTTP-to-HTTPS and www-to-apex
    redirects.
-6. Check that the social preview resolves from `/og.png`.
+6. Check that the social preview resolves from `/character-atlas.png`.
 
 The current project can be deployed through OpenAI Sites because
 `.openai/hosting.json` is present. If moving to a different Cloudflare-compatible

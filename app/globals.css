@@ -1973,7 +1973,7 @@ html[data-theme="silly"] .song-panel {
   position: relative;
   min-width: 0;
   background-color: var(--chaos-pink);
-  background-image: url("/song-atlas.png");
+  background-image: url("/song-atlas-confirmed.png");
   background-repeat: no-repeat;
   background-size: 300% 200%;
 }

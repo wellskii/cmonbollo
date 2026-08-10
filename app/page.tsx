@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { songs, type Song } from "./songs";
 
-type Language = "it" | "ru";
+type Language = "it" | "ru" | "en";
 type Theme = "archive" | "night" | "silly";
 
 const copy = {
   it: {
     languageLabel: "Scegli la lingua",
+    navigationLabel: "Navigazione principale",
     homeLabel: "C'mon, Bollo! — inizio",
     navConcert: "Concerto",
     navBollo: "Bollo",
@@ -93,6 +94,7 @@ const copy = {
   },
   ru: {
     languageLabel: "Выберите язык",
+    navigationLabel: "Основная навигация",
     homeLabel: "C'mon, Bollo! — начало",
     navConcert: "Концерт",
     navBollo: "Болло",
@@ -175,6 +177,91 @@ const copy = {
     oldSiteLink: "Сайт 2011",
     articleLink: "Статья 2010",
   },
+  en: {
+    languageLabel: "Choose language",
+    navigationLabel: "Main navigation",
+    homeLabel: "C'mon, Bollo! — home",
+    navConcert: "Concert",
+    navBollo: "Bollo",
+    navStory: "Story",
+    navMerch: "Merch",
+    heroKicker: "Samara · power pop · reunion 2026",
+    heroLine1: "WE ARE",
+    heroLine2: "BACK.",
+    heroNote:
+      "We played in Samara in 2010. In 2026 we are trying it again. The singer really does have an Italian passport; everyone else is doing their best.",
+    heroAlt: "The C'mon, Bollo! sheep mascot",
+    heroStamp: "ITALIANS*",
+    heroCredit: "SHEEP NO. 01 / STILL UNEXPLAINED",
+    footnote1: "* One person in the band.",
+    footnote2: "The concert, however, really is in Samara.",
+    ticker: ["SAMARA", "2026", "REUNION", "DATE TO BE ANNOUNCED"],
+    concertLabel: "Concert announcement",
+    concertIndex: "01 / THE RETURN",
+    concertEyebrow: "Reunion concert",
+    concertLine1: "BACK.",
+    concertLine2: "LIVE.",
+    when: "When",
+    whenValue: "Autumn 2026",
+    where: "Where",
+    whereValue: "Samara · to be announced",
+    status: "Status",
+    statusValue: "Rehearsing",
+    notify: "Tell me when there is a date",
+    manifestoLabel: "Band manifesto",
+    manifestoLine1: "FIFTEEN YEARS OFF.",
+    manifestoLine2: "ENOUGH.",
+    manifestoAccent: "WE PLAY.",
+    bolloIndex: "02 / THE REAL BOLLO",
+    bolloEyebrow: "Gorilla. Musician. No licence.",
+    bolloTitle: "BOLLO NO DRIVE.",
+    bolloLead: "Plays everything. Driving is another matter.",
+    bolloText:
+      "Bollo is the gorilla from The Mighty Boosh who loses his licence and gave us our name. The sheep has nothing to do with it. That is why it stayed.",
+    bolloAlt:
+      "Collage portrait of Bollo, a gorilla musician with a guitar and drumsticks",
+    bolloDossier: "DOSSIER NO. 01",
+    species: "Species",
+    speciesValue: "Gorilla",
+    role: "Role",
+    roleValue: "Every instrument",
+    license: "Licence",
+    licenseValue: "Lost",
+    storyIndex: "03 / WHAT HAPPENED",
+    storyEyebrow: "Samara · 2010–2026",
+    storyTitle: "IT WAS NOT MONTY PYTHON.",
+    storyLead:
+      "The name comes from The Mighty Boosh. Bollo loses his licence. We lose fifteen years.",
+    storyP1:
+      "In 2010 we play Snickers Urbania in Samara. Then we record songs, launch a Flash site and put an unexplained sheep on it. The Far, The Farther and The Beyond comes out in 2011. Then the band stops and life carries on.",
+    storyP2:
+      "Now we are getting back together for one concert. The singer really is an Italian citizen, so for one night we are an Italian band. Technically, that is enough.",
+    quote: "“C’mon, Bollo, get your monkey anus at the steering wheel.”",
+    quoteBy: "— Vince Noir, the official reason for the name",
+    oldSiteAlt:
+      "The original 2011 C'mon, Bollo! website with a sheep",
+    oldSiteCaption: "cmonbollo.com · 07.02.2011",
+    bandPhotoAlt: "Archive photograph of C'mon, Bollo! in 2010",
+    bandPhotoCaption: "“They sound the way they look” · Samara, 2010",
+    merchIndex: "04 / MERCH",
+    merchEyebrow: "Small concert run",
+    merchTitle: "SHIRTS. BAGS. SHEEP.",
+    merchIntro:
+      "We are making a few things for the concert. Whatever gets printed will exist.",
+    shirtName: "‘Together again’ T-shirt",
+    shirtDesc: "Black cotton · dirty ivory/red print",
+    toteName: "‘Bollo no drive’ tote",
+    toteDesc: "Natural canvas · Bollo still has no licence",
+    posterName: "‘Samara · 2026’ poster",
+    posterDesc: "A2 poster · Samara 2026",
+    soon: "SOON",
+    contactIndex: "05 / CONTACT",
+    contactEyebrow: "Concerts, press, old demos and lyric corrections",
+    contactTitle: "WRITE TO US.",
+    footerClaim: "C’MON, BOLLO! · SAMARA · TOGETHER AGAIN",
+    oldSiteLink: "2011 site",
+    articleLink: "2010 article",
+  },
 } as const;
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
@@ -192,6 +279,12 @@ const themeCopy = {
     night: "Ночь",
     silly: "Дичь",
   },
+  en: {
+    label: "Site style",
+    archive: "Archive",
+    night: "Night",
+    silly: "Nonsense",
+  },
 } as const;
 
 const musicCopy = {
@@ -201,13 +294,14 @@ const musicCopy = {
     eyebrow: "Sei canzoni · registrazioni originali",
     title: "SEI CANZONI. NESSUNA SCUSA.",
     intro:
-      "Questi sono i nostri vecchi MP3. I testi inglesi sono stati ricostruiti a orecchio: dove non siamo sicuri, lo diciamo.",
+      "Questi sono i nostri vecchi MP3. I testi inglesi sono stati confermati dal gruppo; la traduzione russa è stata aggiornata.",
     draftNote:
-      "Una macchina ha ascoltato le canzoni due volte. Non ha capito tutto. Onestamente, neanche noi.",
+      "Testi ricevuti dal gruppo il 9 agosto 2026. Stavolta sappiamo davvero cosa cantavamo.",
     lyrics: "Apri testo e traduzione",
-    english: "English · draft lyrics",
+    english: "English · testo confermato",
     russian: "Русский · перевод",
     draft: "BOZZA",
+    confirmed: "CONFERMATO",
     confidence: {
       high: "chiarezza alta",
       medium: "da verificare",
@@ -220,17 +314,38 @@ const musicCopy = {
     eyebrow: "Шесть песен · оригинальные записи",
     title: "ШЕСТЬ ПЕСЕН. НИКАКИХ ОПРАВДАНИЙ.",
     intro:
-      "Это наши старые MP3. Английские тексты сняты на слух: где не уверены, так и написано.",
+      "Это наши старые MP3. Английские тексты подтвердила группа; русский перевод мы переписали заново.",
     draftNote:
-      "Машина прослушала песни два раза. Поняла не всё. Мы, если честно, тоже.",
+      "Тексты получены от группы 9 августа 2026 года. Теперь мы правда знаем, что там пели.",
     lyrics: "Открыть текст и перевод",
-    english: "English · черновой текст",
+    english: "English · подтверждённый текст",
     russian: "Русский · перевод",
     draft: "ЧЕРНОВИК",
+    confirmed: "ПОДТВЕРЖДЕНО",
     confidence: {
       high: "высокая ясность",
       medium: "нужна проверка",
       low: "много сомнений",
+    },
+  },
+  en: {
+    nav: "Music",
+    index: "04 / FROM THE TAPE",
+    eyebrow: "Six songs · original recordings",
+    title: "SIX SONGS. NO EXCUSES.",
+    intro:
+      "These are our old MP3s. The band has confirmed the English lyrics; the Russian translation has been rewritten.",
+    draftNote:
+      "Lyrics received from the band on 9 August 2026. This time we really do know what we were singing.",
+    lyrics: "Open lyrics and translation",
+    english: "English · confirmed lyrics",
+    russian: "Русский · translation",
+    draft: "DRAFT",
+    confirmed: "CONFIRMED",
+    confidence: {
+      high: "high clarity",
+      medium: "needs checking",
+      low: "many doubtful words",
     },
   },
 } as const;
@@ -271,6 +386,23 @@ const sillyCopy = {
     live: "ВЖИВУЮ",
     dossier: "ЧИТАТЬ ДЕЛО",
     archiveCaption: "ВЕЩДОК",
+  },
+  en: {
+    issue: "Special edition · Samara 2026",
+    deck: "Three things to know before somebody pulls the plug",
+    gigTag: "CONCERT",
+    bolloTag: "THE STAFF",
+    storyTag: "INVESTIGATION",
+    evidenceTag: "PHYSICAL EVIDENCE",
+    evidenceTitle: "IT REALLY HAPPENED.",
+    evidenceIntro:
+      "A Flash site, an unexplained sheep and a photograph from 2010. The case is complete.",
+    songsTag: "SIX RECORDINGS",
+    merchTag: "ALMOST USEFUL OBJECTS",
+    contactTag: "END OF PAPER",
+    live: "LIVE",
+    dossier: "READ THE DOSSIER",
+    archiveCaption: "EXHIBIT",
   },
 } as const;
 
@@ -359,7 +491,7 @@ function SongCard({
       </audio>
 
       <div className="transcript-status">
-        <span>{labels.draft}</span>
+        <span>{song.status === "confirmed" ? labels.confirmed : labels.draft}</span>
         <span>{labels.confidence[song.confidence]}</span>
       </div>
 
@@ -427,6 +559,14 @@ function DisplaySwitches({
         >
           RU
         </button>
+        <span aria-hidden="true">/</span>
+        <button
+          type="button"
+          aria-pressed={language === "en"}
+          onClick={() => onLanguage("en")}
+        >
+          EN
+        </button>
       </div>
     </>
   );
@@ -456,6 +596,7 @@ function SillySongCard({
         <p className="chaos-song-cue">{song.visualCue[language]}</p>
         <h3>{song.title}</h3>
         <div className="chaos-song-meta">
+          <span>{song.status === "confirmed" ? labels.confirmed : labels.draft}</span>
           <span>{song.duration}</span>
           <span>{labels.confidence[song.confidence]}</span>
         </div>
@@ -493,7 +634,7 @@ function SillySite({
         <a className="chaos-logo" href="#chaos-top" aria-label={t.homeLabel}>
           C’MON, BOLLO!
         </a>
-        <nav aria-label={language === "it" ? "Navigazione principale" : "Основная навигация"}>
+        <nav aria-label={t.navigationLabel}>
           <a href="#concerto">{t.navConcert}</a>
           <a href="#bollo">{t.navBollo}</a>
           <a href="#musica">{music.nav}</a>
@@ -727,7 +868,9 @@ export default function Home() {
 
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-language");
-    if (saved === "ru" || saved === "it") {
+    if (saved === "ru" || saved === "it" || saved === "en") {
+      // Restore the client-only preference after hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLanguage(saved);
     }
   }, []);
@@ -740,6 +883,8 @@ export default function Home() {
   useEffect(() => {
     const saved = window.localStorage.getItem("cmon-bollo-theme");
     if (saved === "archive" || saved === "night" || saved === "silly") {
+      // Restore the client-only preference after hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(saved);
     }
   }, []);
@@ -748,6 +893,20 @@ export default function Home() {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("cmon-bollo-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    const stopOtherTracks = (event: Event) => {
+      const currentTrack = event.target;
+      if (!(currentTrack instanceof HTMLAudioElement)) return;
+
+      document.querySelectorAll<HTMLAudioElement>("audio").forEach((track) => {
+        if (track !== currentTrack) track.pause();
+      });
+    };
+
+    document.addEventListener("play", stopOtherTracks, true);
+    return () => document.removeEventListener("play", stopOtherTracks, true);
+  }, []);
 
   if (theme === "silly") {
     return (
@@ -766,7 +925,7 @@ export default function Home() {
         <a className="wordmark" href="#top" aria-label={t.homeLabel}>
           C’MON, BOLLO!
         </a>
-        <nav aria-label={language === "it" ? "Navigazione principale" : "Основная навигация"}>
+        <nav aria-label={t.navigationLabel}>
           <a href="#concerto">{t.navConcert}</a>
           <a href="#bollo">{t.navBollo}</a>
           <a href="#storia">{t.navStory}</a>
@@ -812,6 +971,14 @@ export default function Home() {
               onClick={() => setLanguage("ru")}
             >
               RU
+            </button>
+            <span aria-hidden="true">/</span>
+            <button
+              type="button"
+              aria-pressed={language === "en"}
+              onClick={() => setLanguage("en")}
+            >
+              EN
             </button>
           </div>
           <a className="header-cta" href="#contatto">

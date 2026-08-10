@@ -4,9 +4,9 @@ Official reunion site for the Samara power-pop band C'mon, Bollo!
 
 Canonical domain: **https://cmonbollo.com**
 
-The site is bilingual (Italian/Russian), includes the reconstructed band
+The site has Italian, Russian, and English UI, includes the reconstructed band
 archive, Bollo and sheep lore, concert information, merch concepts, and six
-original recordings with draft English lyrics and Russian translations.
+original recordings with band-confirmed English lyrics and Russian translations.
 
 ## Start locally
 
@@ -32,7 +32,7 @@ The build output is written to `dist/`.
 
 ## Where things live
 
-- `app/page.tsx` — page structure, bilingual UI copy, interactions
+- `app/page.tsx` — page structure, trilingual UI copy, interactions
 - `app/songs.ts` — track metadata, English lyrics, Russian translations
 - `app/globals.css` — the complete visual system and responsive layout
 - `app/layout.tsx` — metadata for cmonbollo.com and social previews
@@ -42,6 +42,7 @@ The build output is written to `dist/`.
 - `scripts/transcribe_audio.py` — repeatable local draft-transcription helper
 - `scripts/requirements-transcription.txt` — optional transcription dependencies
 - `docs/AI-HANDOFF.md` — project context and a safe continuation checklist
+- `docs/DEPLOYMENT.md` — exact build and deployment handoff for another agent
 - `docs/CONTENT-GUIDE.md` — tone, translations, lyrics-confidence notes
 - `docs/TRANSCRIPTION-NOTES.md` — method, uncertainty, and review priorities
 - `docs/DOMAIN.md` — custom-domain and deployment notes
@@ -50,21 +51,22 @@ The build output is written to `dist/`.
 ## Editing content
 
 Most regular text is stored in the `copy` object in `app/page.tsx`. Every key
-has an `it` and `ru` version. Keep both versions aligned when adding or removing
-content.
+has an `it`, `ru`, and `en` version. Keep all three versions aligned when adding
+or removing content.
 
-Songs are separate typed data in `app/songs.ts`. Lyrics currently come from
-machine transcription of rehearsal/live mixes and are explicitly marked as
-drafts. Do not silently remove the draft notice until a band member has checked
-the words against the original lyric sheets or vocal memory.
+Songs are separate typed data in `app/songs.ts`. The current English lyrics were
+supplied by the band on 9 August 2026 and are marked `confirmed`; the Russian
+translations follow that version. New or alternate recordings still start as
+drafts until a band member checks them.
 
 ## Deploying
 
 This is a vinext site targeting Cloudflare-compatible Workers output. The
 existing OpenAI Sites project is declared in `.openai/hosting.json`.
 
-Run a successful production build before deployment. See
-`docs/DOMAIN.md` for the custom-domain handoff.
+Run a successful production build before deployment. Follow
+`docs/DEPLOYMENT.md` for a repeatable agent handoff and `docs/DOMAIN.md` for the
+custom-domain setup.
 
 ## Rights
 
